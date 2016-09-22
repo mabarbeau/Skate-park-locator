@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableSpot extends Migration
+class CreateTableFeature extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,12 @@ class CreateTableSpot extends Migration
      */
     public function up()
     {
-        Schema::create('spots', function (Blueprint $table) {
+        Schema::create('features', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50)->unique();
-            $table->string('title', 100);
+            $table->string('name', 100);
             $table->longText('description');
-            $table->longText('address');
-            $table->string('locality', 50);
-            $table->string('reagion', 50);
-            $table->string('postcode', 20);
-            $table->string('country', 2);
-            $table->float('lat', 10, 8);
-            $table->float('lng', 10, 8);
-            $table->integer('votes');
-            $table->integer('hearts');
-            $table->double('rating', 2, 1)->unsigned();
+            $table->integer('spot_id')->unsigned();
+            $table->foreign('spot_id')->references('id')->on('spots');
             $table->integer('creator_id')->unsigned();
             $table->foreign('creator_id')->references('id')->on('users');
             $table->integer('updater_id')->unsigned();
@@ -43,6 +34,6 @@ class CreateTableSpot extends Migration
      */
     public function down()
     {
-        Schema::dropIfExist('spots');
+        Schema::dropIfExist('features');
     }
 }
