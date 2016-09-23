@@ -23,8 +23,8 @@ class CreateTableSpot extends Migration
             $table->string('reagion', 50);
             $table->string('postcode', 20);
             $table->string('country', 2);
-            $table->float('lat', 10, 8);
-            $table->float('lng', 10, 8);
+            $table->float('lat', 10, 6);
+            $table->float('lng', 10, 6);
             $table->integer('votes');
             $table->integer('hearts');
             $table->double('rating', 2, 1)->unsigned();
@@ -43,6 +43,6 @@ class CreateTableSpot extends Migration
      */
     public function down()
     {
-        Schema::dropIfExist('spots');
+        Schema::drop('spots');
     }
 }
