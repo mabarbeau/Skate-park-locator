@@ -10,8 +10,6 @@ class Spots extends Controller
 {
     protected function home()
     {
-      
+       return view('pages.spots', ['user' => 'User name']);
     }
-
-
 }
