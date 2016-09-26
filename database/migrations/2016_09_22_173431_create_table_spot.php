@@ -15,22 +15,22 @@ class CreateTableSpot extends Migration
     {
         Schema::create('spots', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50)->unique();
+            $table->string('slug', 100)->unique();
             $table->string('title', 100);
             $table->longText('description');
             $table->longText('address');
-            $table->string('locality', 50);
-            $table->string('reagion', 50);
+            $table->string('locality', 50)->nullable();
+            $table->string('reagion', 50)->nullable();
             $table->string('postcode', 20);
             $table->string('country', 2);
             $table->float('lat', 10, 6);
             $table->float('lng', 10, 6);
             $table->integer('votes');
-            $table->integer('hearts');
-            $table->double('rating', 2, 1)->unsigned();
+            $table->integer('hearts')->unsigned();
+            $table->double('rating', 2, 1)->unsigned()->nullable();
             $table->integer('creator_id')->unsigned();
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->integer('updater_id')->unsigned();
+            $table->integer('updater_id')->unsigned()->nullable();
             $table->foreign('updater_id')->references('id')->on('users');
             $table->timestamps();
         });
