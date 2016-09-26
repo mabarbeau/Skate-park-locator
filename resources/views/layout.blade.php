@@ -2,10 +2,9 @@
 <html lang="en">
     <head>
         <!-- (Drag and drop code here)
+
         -->
-        <!-- Auto reload  -->
-        <?php $reload = 5; ?>
-        <meta http-equiv="refresh" content="<?=$reload;?>">
+
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
