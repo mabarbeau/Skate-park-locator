@@ -13,6 +13,7 @@ class Spot extends Model
    * @var array
    */
    protected $fillable = [
+     'slug',
      'name',
      'title',
      'description',
