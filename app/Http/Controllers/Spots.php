@@ -30,16 +30,22 @@ class Spots extends Controller
 
     protected function store(Request $request)
     {
-      $input = $request->all();
-      $input['votes'] = 0;
-      $input['hearts']= 0;
-      $input['rating'] = null;
-      $input['creator_id'] = 1;
-      $input['updater_id'] = 10;
+      $save = $request->all();
 
-      // var_dump($input);
+      // Hardcoded defaults
+      $save['votes'] = 0;
+      $save['hearts']= 0;
+      $save['rating'] = null;
 
-      Spot::create($input);
+      //TODO: Get creator id
+      $save['creator_id'] = 1;
+
+      
+      $save['updater_id'] = 10;
+
+      // var_dump($save);
+
+      Spot::create($save);
 
       return redirect('spots');
     }
