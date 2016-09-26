@@ -24,7 +24,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Spot::class, function (Faker\Generator $faker) {
     return [
-      'name' => $faker->unique()->catchPhrase,
+      'slug' => $faker->unique()->slug,
       'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
       'description' => $faker->sentence($nbWords = 20, $variableNbWords = true),
       'address' => $faker->streetAddress,
