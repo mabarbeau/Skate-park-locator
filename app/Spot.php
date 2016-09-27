@@ -39,4 +39,9 @@ class Spot extends Model
   //  protected $hidden = [
   //    '',
   //  ];
+
+  public function features()
+  {
+    return $this->hasMany(Feature::class);
+  }
 }
