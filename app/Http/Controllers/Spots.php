@@ -19,7 +19,7 @@ class Spots extends Controller
     protected function show($slug)
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
-
+      // dd($spot);
       return view('pages.spots.show', compact('spot'));
     }
 
@@ -40,7 +40,7 @@ class Spots extends Controller
       //TODO: Get creator id
       $save['creator_id'] = 1;
 
-      
+
       $save['updater_id'] = 10;
 
       // var_dump($save);
