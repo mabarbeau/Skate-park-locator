@@ -52,4 +52,21 @@
        {{$spot->updated_at}}
      </li>
   </ul>
+
+  <h2>Features</h2>
+  <ol>
+    @foreach($spot->features as $feature)
+      <h3>
+        <li>
+          {{$feature->name}}
+        </li>
+      </h3>
+
+      <ul>
+        <li>{{$feature->description}}</li>
+        <li>{{$feature->creator_id}}</li>
+      </ul>
+
+    @endforeach
+  </ol>
 @stop
