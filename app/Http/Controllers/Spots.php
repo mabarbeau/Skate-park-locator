@@ -13,19 +13,19 @@ class Spots extends Controller
     {
       $spots = Spot::all();
 
-      return view('pages.spots.index', compact('spots'));
+      return view('spots.index', compact('spots'));
     }
 
     protected function show($slug)
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
-      // dd($spot);
-      return view('pages.spots.show', compact('spot'));
+      
+      return view('spots.show', compact('spot'));
     }
 
     protected function create()
     {
-      return view('pages.spots.create');
+      return view('spots.create');
     }
 
     protected function store(Request $request)
