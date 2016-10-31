@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Extreme spots</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -32,11 +32,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <div class ='navbar-brand'>
+                  <a class="" href="{{ url('/') }}">
+                    Extreme spots
+                  </a>
+                    for Extreme sports
+                </div>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
