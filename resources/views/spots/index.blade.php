@@ -1,4 +1,5 @@
-@extends('partials.body')
+@extends('layouts.app')
+
 @section('title')
   All Spots
 @stop
