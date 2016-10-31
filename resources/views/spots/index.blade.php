@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-  All Spots
-@stop
+@section('title', 'All Spots')
 
 @section('content')
 

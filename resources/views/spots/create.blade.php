@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-  Create spot
-@stop
+@section('title' , 'Create spot')
 
 @section('content')
   {!! Form::open(['url' => 'spots']) !!}
