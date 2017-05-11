@@ -19,7 +19,7 @@ class Spots extends Controller
     protected function show($slug)
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
-      
+
       return view('spots.show', compact('spot'));
     }
 
@@ -30,6 +30,19 @@ class Spots extends Controller
 
     protected function store(Request $request)
     {
+      $this->validate($request, [
+        'slug'=> 'required|unique:spots|max:255',
+        'title'=> 'required',
+        'description'=> 'required',
+        'address'=> 'required',
+        'locality'=> 'required',
+        'reagion'=> 'required',
+        // 'postcode'=> '',
+        'country'=> 'required',
+        'lat'=> 'required',
+        'lng'=> 'required'
+      ]);
+
       $save = $request->all();
 
       // Hardcoded defaults
@@ -40,9 +53,7 @@ class Spots extends Controller
       //TODO: Get creator id
       $save['creator_id'] = 1;
 
-
       $save['updater_id'] = 10;
-
       // var_dump($save);
 
       Spot::create($save);
