@@ -6,7 +6,7 @@ Route::get('/', function () {
 Route::get('spots', 'Spots@index');
 Route::get('spots/create', 'Spots@create');
 Route::get('spots/{slug}', 'Spots@show');
-Route::get('spots/edit/{slug}', 'Spots@edit');
+Route::get('spots/{slug}/edit', 'Spots@edit');
 Route::post('spots', 'Spots@store');
 
 Auth::routes();
