@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-  <a href="edit" class="btn btn-default">Edit</a>
+  <a href="{{$spot->slug}}/edit" class="btn btn-default">Edit</a>
   <ul>
      <li>
        {{$spot->description}}
