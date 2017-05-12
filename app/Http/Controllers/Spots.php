@@ -25,13 +25,15 @@ class Spots extends Controller
 
     protected function create()
     {
-      return view('spots.edit');
+      $spot = new Spot;
+      
+      return view('spots.edit', compact('spot'));
     }
     protected function edit($slug)
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
 
-      return view('spots.edit');
+      return view('spots.edit', compact('spot') );
     }
 
     protected function store(Request $request)
