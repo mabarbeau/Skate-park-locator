@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Spot;
+use App\Http\Requests\StoreSpot;
 
 class Spots extends Controller
 {
@@ -26,7 +26,7 @@ class Spots extends Controller
     protected function create()
     {
       $spot = new Spot;
-      
+
       return view('spots.edit', compact('spot'));
     }
     protected function edit($slug)
@@ -36,21 +36,8 @@ class Spots extends Controller
       return view('spots.edit', compact('spot') );
     }
 
-    protected function store(Request $request)
+    protected function store(StoreSpot $request)
     {
-      $this->validate($request, [
-        'slug'=> 'required|unique:spots|max:255',
-        'title'=> 'required',
-        'description'=> 'required',
-        'address'=> 'required',
-        'locality'=> 'required',
-        'reagion'=> 'required',
-        // 'postcode'=> '',
-        'country'=> 'required',
-        'lat'=> 'required',
-        'lng'=> 'required'
-      ]);
-
       $save = $request->all();
 
       // Hardcoded defaults
@@ -60,7 +47,6 @@ class Spots extends Controller
 
       //TODO: Get creator id
       $save['creator_id'] = 1;
-
       $save['updater_id'] = 10;
       // var_dump($save);
 
