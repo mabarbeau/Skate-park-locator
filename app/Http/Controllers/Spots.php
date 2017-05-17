@@ -11,16 +11,7 @@ class Spots extends Controller
 {
     protected function index()
     {
-      $spots = Spot::all();
-
-      return view('spots.index', compact('spots'));
-    }
-
-    protected function show($slug)
-    {
-      $spot = Spot::where('slug', $slug)->firstOrFail();
-
-      return view('spots.show', compact('spot'));
+      return view('spots.index', ['spots' => $spots = Spot::all() ]);
     }
 
     protected function create()
@@ -28,12 +19,6 @@ class Spots extends Controller
       $spot = new Spot;
 
       return view('spots.edit', compact('spot'));
-    }
-    protected function edit($slug)
-    {
-      $spot = Spot::where('slug', $slug)->firstOrFail();
-
-      return view('spots.edit', compact('spot') );
     }
 
     protected function store(StoreSpot $request)
@@ -54,4 +39,29 @@ class Spots extends Controller
 
       return redirect('spots');
     }
+
+    protected function show($slug)
+    {
+      $spot = Spot::where('slug', $slug)->firstOrFail();
+
+      return view('spots.show', compact('spot'));
+    }
+
+    protected function edit($slug)
+    {
+      $spot = Spot::where('slug', $slug)->firstOrFail();
+
+      return view('spots.edit', compact('spot') );
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
+    }
+
 }
