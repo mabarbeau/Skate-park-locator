@@ -54,14 +54,20 @@ class Spots extends Controller
       return view('spots.edit', compact('spot') );
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreSpot $request, $slug)
     {
-        //
+      $spot = Spot::where('slug', $slug)->firstOrFail();
+      foreach ($request as $key => $value) {
+        $spot[$key] = $request[$key];
+      }
+      $spot['updater_id'] = 10;
+
+      $spot->save();
     }
 
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $deletedRows = Spot::where('slug', $slug)->delete();
     }
 
 }
