@@ -3,7 +3,7 @@ Route::get('/', function () {
     return view('pages.welcome');
 });
 
-Route::resource('spots', 'Spots');
+Route::resource('spots', 'SpotsController');
 
 Auth::routes();
 
