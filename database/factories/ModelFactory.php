@@ -50,6 +50,8 @@ $factory->define(App\Feature::class, function (Faker\Generator $faker) {
     return [
       'name' => $faker->unique()->slug,
       'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+      'lat' => $faker->latitude,
+      'lng' => $faker->longitude,
       'spot_id' => function () {
           return factory(App\Spot::class)->create()->id;
       },

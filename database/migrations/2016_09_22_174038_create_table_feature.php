@@ -17,6 +17,8 @@ class CreateTableFeature extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->longText('description');
+            $table->float('lat', 10, 6);
+            $table->float('lng', 10, 6);
             $table->integer('spot_id')->unsigned();
             $table->foreign('spot_id')->references('id')->on('spots');
             $table->integer('creator_id')->unsigned();
