@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Spot;
 use App\Http\Requests\StoreSpot;
 
-class Spots extends Controller
+class SpotsController extends Controller
 {
     protected function index()
     {
@@ -58,7 +58,7 @@ class Spots extends Controller
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
       foreach ($request as $key => $value) {
-        $spot[$key] = $request[$key];
+        $spot[$key] = $value;
       }
       $spot['updater_id'] = 10;
 
