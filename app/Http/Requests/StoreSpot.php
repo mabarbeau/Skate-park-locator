@@ -32,8 +32,7 @@ class StoreSpot extends FormRequest
           'reagion'=> 'required',
           // 'postcode'=> '',
           'country'=> 'required',
-          'lat'=> 'required',
-          'lng'=> 'required'
+          'map'=> 'required',
         ];
     }
 }
