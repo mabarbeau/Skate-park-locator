@@ -23,8 +23,7 @@ class CreateTableSpot extends Migration
             $table->string('reagion', 50)->nullable();
             $table->string('postcode', 20);
             $table->string('country', 2);
-            $table->float('lat', 10, 6);
-            $table->float('lng', 10, 6);
+            $table->json('map');
             $table->integer('votes');
             $table->integer('hearts')->unsigned();
             $table->double('rating', 2, 1)->unsigned()->nullable();

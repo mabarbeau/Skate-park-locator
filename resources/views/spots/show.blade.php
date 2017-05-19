@@ -27,10 +27,7 @@
        {{$spot->country}}
      </li>
      <li>
-       {{$spot->lat}}
-     </li>
-     <li>
-       {{$spot->lng}}
+       {{$spot->map}}
      </li>
      <li>
        {{$spot->votes}}

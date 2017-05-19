@@ -23,6 +23,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Spot::class, function (Faker\Generator $faker) {
+    $map = "[";
+    $random = mt_rand(2,9);
+    for ($i=0; $i <= $random; $i++) {
+      $lat = $faker->latitude;
+      $lng = $faker->longitude;
+      $map .= '[' . $lat . ', ' . $lng . ']';
+      if ($i != $random) {
+        $map .= ', ';
+      }
+    }
+    $map .= "]";
+
     return [
       'slug' => $faker->unique()->slug,
       'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
@@ -32,8 +44,7 @@ $factory->define(App\Spot::class, function (Faker\Generator $faker) {
       'reagion' => $faker->state,
       'postcode' => $faker->postcode,
       'country' => $faker->countryCode,
-      'lat' => $faker->latitude,
-      'lng' => $faker->longitude,
+      'map' => $map,
       'votes' => $faker->numberBetween($min = 1, $max = 10000),
       'hearts' => $faker->numberBetween($min = 1, $max = 1000),
       'rating' => $faker->numberBetween($min = 1, $max = 5),

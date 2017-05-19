@@ -47,12 +47,8 @@
       {{ Form::text('country', $spot->country, ['class' => 'form-control']) }}
     </div>
     <div class="form-group">
-      {{ Form::label('lat', 'Latitude') }}
-      {{ Form::text('lat', $spot->lat, ['class' => 'form-control']) }}
-    </div>
-    <div class="form-group">
-      {{ Form::label('lng', 'Longitude') }}
-      {{ Form::text('lng', $spot->lng, ['class' => 'form-control']) }}
+      {{ Form::label('map', 'Coordinates') }}
+      {{ Form::text('map', $spot->map, ['class' => 'form-control']) }}
     </div>
     <div class="form-group">
       {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
