@@ -2,7 +2,9 @@
 @section('title')
   Welcome!
 @stop
-
+<h1>
+  Welcome!
+</h1>
 @section('content')
   <div class="container">
     <div class="jumbotron">

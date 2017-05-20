@@ -1,17 +1,16 @@
 <?php
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class WelcomeTest extends TestCase
 {
     /**
      * A basic functional test example.
      *
      * @return void
      */
-    public function visit_homepage()
+    public function testWelcome()
     {
         $this->visit('/')
              ->see('Welcome');
