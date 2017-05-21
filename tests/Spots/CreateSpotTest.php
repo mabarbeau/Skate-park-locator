@@ -1,9 +1,4 @@
 <?php
-
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 class CreateSpotTest extends TestCase
 {
     /**
@@ -14,6 +9,6 @@ class CreateSpotTest extends TestCase
     public function testRoute()
     {
       $this->visit('/spots/create')
-           ->see('Create');
+            ->seeRouteIs('spots.create');
     }
 }
