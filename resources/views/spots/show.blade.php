@@ -7,6 +7,10 @@
 
 @section('content')
   <a href="{{$spot->slug}}/edit" class="btn btn-default">Edit</a>
+  {{ Form::open(['route' => ['spots.destroy', $spot->slug], 'method' => 'delete']) }}
+    <button class="btn btn-dangers" type="submit">Delete</button>
+  {{ Form::close() }}
+
   <ul>
      <li>
        {{$spot->description}}
