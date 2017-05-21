@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Spot;
+use App\Backup;
 use App\Http\Requests\StoreSpot;
 
 class SpotsController extends Controller
@@ -67,7 +68,16 @@ class SpotsController extends Controller
 
     public function destroy($slug)
     {
-        $deletedRows = Spot::where('slug', $slug)->delete();
+        $spot = Spot::where('slug', $slug)->firstOrFail();
+
+        Backup::create([
+            'table' => 'spots',
+            'data' => json_encode($spot),
+        ]);
+
+        $deletedRows = $spot->delete();
+
+        return redirect('spots');
     }
 
 }
