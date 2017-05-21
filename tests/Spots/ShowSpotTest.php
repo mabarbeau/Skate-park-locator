@@ -1,18 +1,25 @@
 <?php
-
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Spot;
 
 class ShowSpotTest extends TestCase
 {
+    /**
+    * Create create application early for data provider
+    **/
     public function __construct($name = null, array $data = array(), $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
 
         $this->createApplication();
     }
+
+    /**
+    * Get slug from spot id
+    *
+    * @param $id
+    *
+    * @return $slug
+    **/
 
     protected function getSlugFromId($id)
     {
@@ -21,7 +28,13 @@ class ShowSpotTest extends TestCase
         return $spot->slug;
     }
 
-    public function additionProvider()
+
+    /**
+    * Provide test with random slugs from spots table
+    *
+    * @return $slug
+    **/
+    public function slugProvider()
     {
         $totalSpots = Spot::count();
         $test = [];
@@ -35,9 +48,13 @@ class ShowSpotTest extends TestCase
     }
 
     /**
+    * Check route is spots show
+    *
     * @param $slug
     *
-    * @dataProvider additionProvider
+    * @dataProvider slugProvider
+    *
+    * @return void
     */
     public function testRoute($slug)
     {
@@ -46,9 +63,13 @@ class ShowSpotTest extends TestCase
     }
 
     /**
+    * Navigate to edit page
+    *
     * @param $slug
     *
-    * @dataProvider additionProvider
+    * @dataProvider slugProvider
+    *
+    * @return void
     */
     public function testClickEdit($slug)
     {
