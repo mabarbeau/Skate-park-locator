@@ -7,41 +7,51 @@ use App\Spot;
 
 class ShowSpotTest extends TestCase
 {
+    public function __construct($name = null, array $data = array(), $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+
+        $this->createApplication();
+    }
+
     protected function getSlug($id)
     {
         $spot = Spot::find($id);
+
         return $spot->slug;
     }
 
     public function additionProvider()
     {
-        return [
-            [1],
-            [2],
-            [3],
-        ];
+        $totalSpots = Spot::count();
+        $test = [];
+
+        for ($i=0; $i < 2; $i++)
+        {
+            $slug = self::getSlug(mt_rand(1,$totalSpots));
+            $test["Testing 'spots/$slug'"] = [$slug];
+        }
+        return $test;
     }
 
     /**
-    * @param $id
+    * @param $slug
     *
     * @dataProvider additionProvider
     */
-    public function testRoute($id)
+    public function testRoute($slug)
     {
-        $slug = self::getSlug($id);
         $this->visit("/spots/$slug")
               ->seeRouteIs('spots.show', ['spot' => $slug ]);
     }
 
     /**
-    * @param $id
+    * @param $slug
     *
     * @dataProvider additionProvider
     */
-    public function testClickEdit($id)
+    public function testClickEdit($slug)
     {
-        $slug = self::getSlug($id);
         $this->visit("/spots/$slug")
               ->click("Edit")
               ->seeRouteIs('spots.edit', ['spot' => $slug ]);
