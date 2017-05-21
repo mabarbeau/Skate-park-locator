@@ -20,7 +20,7 @@ class CreateTableFeature extends Migration
             $table->float('lat', 10, 6);
             $table->float('lng', 10, 6);
             $table->integer('spot_id')->unsigned();
-            $table->foreign('spot_id')->references('id')->on('spots');
+            $table->foreign('spot_id')->references('id')->on('spots')->onDelete('cascade');;
             $table->integer('creator_id')->unsigned();
             $table->foreign('creator_id')->references('id')->on('users');
             $table->integer('updater_id')->unsigned();
