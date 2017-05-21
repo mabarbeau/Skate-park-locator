@@ -31,15 +31,6 @@ class Spot extends Model
      'updater_id',
    ];
 
-   /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
-  //  protected $hidden = [
-  //    '',
-  //  ];
-
   public function features()
   {
     return $this->hasMany(Feature::class);
