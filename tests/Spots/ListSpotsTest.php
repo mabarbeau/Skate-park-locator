@@ -1,13 +1,18 @@
 <?php
-
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 class ListSpotsTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Check route is spots index
+     *
+     * @return void
+     */
+     public function testRoute()
+     {
+         $this->visit('/spots')
+              ->seeRouteIs('spots.index');
+     }
+    /**
+     * Navigate from spots index to create spot
      *
      * @return void
      */
