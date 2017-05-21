@@ -14,7 +14,7 @@ class ShowSpotTest extends TestCase
         $this->createApplication();
     }
 
-    protected function getSlug($id)
+    protected function getSlugFromId($id)
     {
         $spot = Spot::find($id);
 
@@ -28,7 +28,7 @@ class ShowSpotTest extends TestCase
 
         for ($i=0; $i < 2; $i++)
         {
-            $slug = self::getSlug(mt_rand(1,$totalSpots));
+            $slug = self::getSlugFromId(mt_rand(1,$totalSpots));
             $test["Testing 'spots/$slug'"] = [$slug];
         }
         return $test;
