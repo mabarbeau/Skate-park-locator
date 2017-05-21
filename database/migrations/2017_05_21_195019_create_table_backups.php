@@ -17,7 +17,7 @@ class CreateTableBackups extends Migration
       $table->increments('id');
       $table->string('table', 20);
       $table->jsonb('data');
-      $table->timestamps();
+      $table->timestamp('deleted_at');
     });
   }
 
