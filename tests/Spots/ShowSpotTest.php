@@ -7,22 +7,43 @@ use App\Spot;
 
 class ShowSpotTest extends TestCase
 {
-    protected $spot;
-
-    public function testRoute()
+    protected function getSlug($id)
     {
-        $spot = Spot::firstOrFail();
-        $this->spot = $spot;
-        $this->visit("/spots/$spot->slug")
-              ->seeRouteIs('spots.show', ['spot' => $this->spot->slug ]);
-
-        return $this;
+        $spot = Spot::find($id);
+        return $spot->slug;
     }
 
-    public function testClickEdit()
+    public function additionProvider()
     {
-        $this->testRoute()
+        return [
+            [1],
+            [2],
+            [3],
+        ];
+    }
+
+    /**
+    * @param $id
+    *
+    * @dataProvider additionProvider
+    */
+    public function testRoute($id)
+    {
+        $slug = self::getSlug($id);
+        $this->visit("/spots/$slug")
+              ->seeRouteIs('spots.show', ['spot' => $slug ]);
+    }
+
+    /**
+    * @param $id
+    *
+    * @dataProvider additionProvider
+    */
+    public function testClickEdit($id)
+    {
+        $slug = self::getSlug($id);
+        $this->visit("/spots/$slug")
               ->click("Edit")
-              ->seeRouteIs('spots.edit', ['spot' => $this->spot->slug ]);
+              ->seeRouteIs('spots.edit', ['spot' => $slug ]);
     }
 }
