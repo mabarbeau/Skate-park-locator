@@ -38,6 +38,8 @@ class SpotsController extends Controller
 
       Spot::create($save);
 
+    //   Session::flash('flash_message', 'Spot successfully added!');
+
       return redirect('spots');
     }
 
@@ -58,12 +60,18 @@ class SpotsController extends Controller
     public function update(StoreSpot $request, $slug)
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
-      foreach ($request as $key => $value) {
-        $spot[$key] = $value;
-      }
+
+      $input = $request->all();
+
+      $spot->fill($input)->save();
+
       $spot['updater_id'] = 10;
 
       $spot->save();
+
+    //   Session::flash('flash_message', 'Spot successfully updated!');
+
+      return redirect("spots/$slug");
     }
 
     public function destroy($slug)
@@ -76,6 +84,8 @@ class SpotsController extends Controller
         ]);
 
         $deletedRows = $spot->delete();
+
+        // Session::flash('flash_message', 'Spot successfully deleted!');
 
         return redirect('spots');
     }

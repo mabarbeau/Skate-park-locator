@@ -24,7 +24,7 @@ class StoreSpot extends FormRequest
     public function rules()
     {
         return [
-          'slug'=> 'required|unique:spots|max:255',
+          'slug'=> "required|max:255|unique:spots,id,:id",
           'title'=> 'required',
           'description'=> 'required',
           'address'=> 'required',

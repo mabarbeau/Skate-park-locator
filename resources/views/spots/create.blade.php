@@ -13,7 +13,7 @@
     </div>
   @endif
 
-  {!! Form::open(['route' => ['spots.update', $spot->slug], 'method' => 'patch']) !!}
+  {!! Form::open(['url' => 'spots']) !!}
     <div class="form-group">
       {{ Form::label('slug', 'Slug') }}
       {{ Form::text('slug', $spot->slug, ['class' => 'form-control']) }}
