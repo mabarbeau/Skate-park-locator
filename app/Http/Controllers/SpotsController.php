@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 use App\Spot;
 use App\Backup;
@@ -38,7 +39,7 @@ class SpotsController extends Controller
 
       Spot::create($save);
 
-    //   Session::flash('flash_message', 'Spot successfully added!');
+      Session::flash('message', 'Spot successfully added!');
 
       return redirect('spots');
     }
@@ -61,15 +62,11 @@ class SpotsController extends Controller
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
 
-      $input = $request->all();
-
-      $spot->fill($input)->save();
-
       $spot['updater_id'] = 10;
 
-      $spot->save();
+      $spot->fill( $request->all() )->save();
 
-    //   Session::flash('flash_message', 'Spot successfully updated!');
+      Session::flash('message', 'Spot successfully updated!');
 
       return redirect("spots/$slug");
     }
@@ -85,7 +82,7 @@ class SpotsController extends Controller
 
         $deletedRows = $spot->delete();
 
-        // Session::flash('flash_message', 'Spot successfully deleted!');
+        Session::flash('message', 'Spot successfully deleted!');
 
         return redirect('spots');
     }
