@@ -21,7 +21,7 @@ class FeaturesController extends Controller
 
         $features = Feature::where('spot_id', $spot->id)->get();
 
-        return view('features.index', ['features' => $features ]);
+        return view('features.index',  ['slug' => $slug, 'features' => $features]);
     }
 
     /**
@@ -62,9 +62,7 @@ class FeaturesController extends Controller
      */
     public function show($slug, $id)
     {
-        $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
-
-        $features = Feature::where('spot_id', $spot->id)->get();
+        $feature = Feature::find($id)->firstOrFail();
 
         return view('features.show', ['slug' => $slug, 'feature' => $feature] );
     }

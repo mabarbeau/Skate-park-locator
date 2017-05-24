@@ -1,15 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-{{$feature->
-  title}}
+{{$feature->name}}
 @stop
 
 @section('content')
   <a href="{{$feature->id}}/edit" class="btn btn-default">Edit</a>
-  {{ Form::open(['route' => ['features.destroy', $feature->id], 'method' => 'delete']) }}
-    <button class="btn btn-dangers" type="submit">Delete</button>
-  {{ Form::close() }}
 
   <h2>Features</h2>
   <ol>

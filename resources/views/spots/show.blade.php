@@ -61,7 +61,9 @@
     @foreach($spot->features as $feature)
       <h3>
         <li>
-          {{$feature->name}}
+          <a href="{{$spot->slug}}/features/{{$feature->id}}">
+            {{$feature->name}}
+          </a>
         </li>
       </h3>
 
