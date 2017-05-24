@@ -11,11 +11,21 @@ use App\Http\Requests\StoreSpot;
 
 class SpotsController extends Controller
 {
+  /**
+   * Display a listing of the spots.
+   *
+   * @return \Illuminate\Http\Response
+   */
     protected function index()
     {
       return view('spots.index', ['spots' => $spots = Spot::all() ]);
     }
 
+    /**
+     * Show the form for creating a new spots.
+     *
+     * @return \Illuminate\Http\Response
+     */
     protected function create()
     {
       $spot = new Spot;
@@ -23,6 +33,12 @@ class SpotsController extends Controller
       return view('spots.edit', compact('spot'));
     }
 
+    /**
+     * Store a newly created spots in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     protected function store(StoreSpot $request)
     {
       $save = $request->all();
@@ -44,6 +60,12 @@ class SpotsController extends Controller
       return redirect('spots');
     }
 
+    /**
+     * Display the specified spots.
+     *
+     * @param  int  $slug
+     * @return \Illuminate\Http\Response
+     */
     protected function show($slug)
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
@@ -51,6 +73,12 @@ class SpotsController extends Controller
       return view('spots.show', compact('spot'));
     }
 
+    /**
+     * Show the form for editing the specified spots.
+     *
+     * @param  int  $slug
+     * @return \Illuminate\Http\Response
+     */
     protected function edit($slug)
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
@@ -58,6 +86,13 @@ class SpotsController extends Controller
       return view('spots.edit', compact('spot') );
     }
 
+    /**
+     * Update the specified spots in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $slug
+     * @return \Illuminate\Http\Response
+     */
     public function update(StoreSpot $request, $slug)
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
@@ -71,6 +106,12 @@ class SpotsController extends Controller
       return redirect("spots/$slug");
     }
 
+    /**
+     * Remove the specified spots from storage.
+     *
+     * @param  int  $slug
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($slug)
     {
         $spot = Spot::where('slug', $slug)->firstOrFail();
