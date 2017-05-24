@@ -15,7 +15,7 @@ class CreateTableSpot extends Migration
     {
         Schema::create('spots', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('slug', 100)->unique();
+            $table->string('slug', 50)->unique();
             $table->string('title', 100);
             $table->longText('description');
             $table->longText('address');

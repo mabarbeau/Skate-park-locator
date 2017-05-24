@@ -13,7 +13,7 @@ $factory->define(App\Spot::class, function (Faker\Generator $faker) {
     $map .= "]";
 
     return [
-      'slug' => $faker->unique()->slug,
+      'slug' => $faker->unique()->slug($nbWords = 3),
       'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
       'description' => $faker->sentence($nbWords = 20, $variableNbWords = true),
       'address' => $faker->streetAddress,
