@@ -24,8 +24,8 @@ class CreateTableSpot extends Migration
             $table->string('postcode', 20);
             $table->string('country', 2);
             $table->json('map');
-            $table->integer('votes');
-            $table->integer('hearts')->unsigned();
+            $table->integer('votes')->default(0);
+            $table->integer('hearts')->unsigned()->default(0);
             $table->double('rating', 2, 1)->unsigned()->nullable();
             $table->integer('creator_id')->unsigned();
             $table->foreign('creator_id')->references('id')->on('users');

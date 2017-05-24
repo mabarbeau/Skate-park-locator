@@ -44,8 +44,6 @@ class SpotsController extends Controller
       $save = $request->all();
 
       // Hardcoded defaults
-      $save['votes'] = 0;
-      $save['hearts']= 0;
       $save['rating'] = null;
 
       //TODO: Get creator id
