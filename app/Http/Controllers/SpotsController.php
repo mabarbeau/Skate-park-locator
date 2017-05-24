@@ -30,7 +30,7 @@ class SpotsController extends Controller
     {
       $spot = new Spot;
 
-      return view('spots.edit', compact('spot'));
+      return view('spots.create', compact('spot'));
     }
 
     /**
