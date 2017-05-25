@@ -13,18 +13,20 @@
     </div>
   @endif
 
-
-name
-description
-spot_id
-creator_id
-updater_id
-
   {!! Form::open(['url' => 'features']) !!}
     <div class="form-group">
-      {{ Form::text('slug', $feature->slug, ['class' => 'form-control']) }}
+      {{ Form::label('name', 'Name') }}
+      {{ Form::text('name', $feature->name, ['class' => 'form-control']) }}
     </div>
 
+    <div class="form-group">
+      {{ Form::label('description', 'Description') }}
+      {{ Form::text('description', $feature->description, ['class' => 'form-control']) }}
+    </div>
+
+    <div class="form-group">
+      {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+    </div>
   {!! Form::close() !!}
 
 @stop
