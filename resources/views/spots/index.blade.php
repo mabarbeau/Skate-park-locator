@@ -4,12 +4,11 @@
 
 @section('content')
 
-  <a href="/spots/create" class="btn btn-primary"> Create new </a>
-
+  <a href="{{route('spots.create')}}" class="btn btn-primary"> Create new </a>
   <ul>
     @foreach ($spots as $spot)
         <li>
-          <a href='/spots/{{$spot->slug}}'>
+          <a href='{{route('spots.show', [$spot->slug])}}'>
             {{$spot->title}}
           </a>
         </li>

@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-  <a href="{{$spot->slug}}/edit" class="btn btn-default">Edit</a>
+  <a href="{{route('spots.edit', ['slug'=> $spot->slug])}}" class="btn btn-default">Edit</a>
   {{ Form::open(['route' => ['spots.destroy', $spot->slug], 'method' => 'delete']) }}
     <button class="btn btn-dangers" type="submit">Delete</button>
   {{ Form::close() }}
@@ -59,9 +59,10 @@
   <h2>Features</h2>
   <ol>
     @foreach($spot->features as $feature)
+
       <h3>
         <li>
-          <a href="{{$spot->slug}}/features/{{$feature->id}}">
+          <a href="{{route('features.show', ['slug'=> $spot->slug, 'feature'=> $feature->id])}}">
             {{$feature->name}}
           </a>
         </li>
