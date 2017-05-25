@@ -57,6 +57,9 @@
   </ul>
 
   <h2>Features</h2>
+  <a href="{{route('features.create', ['slug'=> $spot->slug])}}" class="btn btn-default">
+    Create
+  </a>
   <ol>
     @foreach($spot->features as $feature)
 
