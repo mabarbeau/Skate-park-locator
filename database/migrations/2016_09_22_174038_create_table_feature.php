@@ -15,6 +15,7 @@ class CreateTableFeature extends Migration
     {
         Schema::create('features', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('index')->unsigned();
             $table->string('name', 100);
             $table->longText('description');
             $table->float('lat', 10, 6);
