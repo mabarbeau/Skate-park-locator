@@ -2,7 +2,7 @@
 class CreateSpotTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test spot create route
      *
      * @return void
      */
@@ -11,4 +11,28 @@ class CreateSpotTest extends TestCase
       $this->visit('/spots/create')
             ->seeRouteIs('spots.create');
     }
+
+    /**
+    * Test form can create a new spot
+    *
+    * @return void
+    */
+    public function testForm()
+    {
+        $spot = factory(App\Spot::class)->make();
+
+        $this->visit('/spots/create')
+            ->type($spot->slug, 'slug')
+            ->type($spot->title, 'title')
+            ->type($spot->description, 'description')
+            ->type($spot->address, 'address')
+            ->type($spot->locality, 'locality')
+            ->type($spot->reagion, 'reagion')
+            ->type($spot->postcode, 'postcode')
+            ->type($spot->country, 'country')
+            ->type($spot->map, 'map')
+            ->press('Submit')
+            ->seeRouteIs('spots.index');
+    }
+
 }
