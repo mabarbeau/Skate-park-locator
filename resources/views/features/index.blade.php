@@ -9,7 +9,7 @@
   <ul>
     @foreach ($features as $feature)
         <li>
-          <a href="features/{{$feature->id}}">
+          <a href="features/{{$feature->index}}">
             {{$feature->name}}
           </a>
         </li>

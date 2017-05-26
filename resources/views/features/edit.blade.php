@@ -12,8 +12,8 @@
         </ul>
     </div>
   @endif
-  {{dd($feature->id)}}
-  {!! Form::open(['route' => route('features.update', ['slug' => $slug, 'id' => $feature->id]), 'method' => 'patch']) !!}
+  {{dd($feature->index)}}
+  {!! Form::open(['route' => route('features.update', ['slug' => $slug, 'id' => $feature->index]), 'method' => 'patch']) !!}
     <div class="form-group">
       {{ Form::label('name', 'Name') }}
       {{ Form::text('name', $feature->name, ['class' => 'form-control']) }}

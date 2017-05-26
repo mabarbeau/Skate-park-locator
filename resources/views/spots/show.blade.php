@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{$spot->
-  title}}
+  {{$spot->title}}
 @stop
 
 @section('content')
@@ -57,7 +56,7 @@
   </ul>
 
   <h2>Features</h2>
-  <a href="{{route('features.create', ['slug'=> $spot->slug])}}" class="btn btn-default">
+  <a href="{{route('features.create', $spot->slug)}}" class="btn btn-default">
     Create
   </a>
   <ol>
@@ -65,7 +64,7 @@
 
       <h3>
         <li>
-          <a href="{{route('features.show', ['slug'=> $spot->slug, 'feature'=> $feature->id])}}">
+          <a href="{{route('features.show', ['slug'=> $spot->slug, 'feature'=> $feature->index])}}">
             {{$feature->name}}
           </a>
         </li>

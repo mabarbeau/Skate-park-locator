@@ -7,12 +7,14 @@ use Session;
 
 use App\Spot;
 use App\Feature;
+use App\Http\Requests\StoreFeature;
 
 class FeaturesController extends Controller
 {
     /**
      * Display a listing of all features for a single of spot
      *
+     * @param App\Spot::$slug
      * @return \Illuminate\Http\Response
      */
     public function index($slug)
@@ -27,6 +29,7 @@ class FeaturesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param App\Spot::$slug
      * @return \Illuminate\Http\Response
      */
     public function create($slug)
@@ -39,30 +42,39 @@ class FeaturesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param App\Spot::$slug
+     * @param  App\Request\StoreFeature $request
      * @return \Illuminate\Http\Response
      */
-     protected function store(StoreFeature $request)
+     protected function store($slug, StoreFeature $request)
      {
-       $save = $request->all();
+        $save = $request->all();
 
-       Feature::create($save);
+        $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
+        $save['spot_id'] = $spot->id;
 
-       Session::flash('message', 'Feature successfully added!');
+        $save['index'] = 1 + Feature::where('spot_id', $spot->id)->count();
+        $save['creator_id'] = '1';
+        $save['updater_id'] = '1';
 
-       return redirect('features');
+        Feature::create($save);
+
+        Session::flash('message', 'Feature successfully added!');
+
+        return redirect( route('spots.show',  ['slug' => $slug] ) );
      }
 
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param App\Spot::$slug
+     * @param  int  $index
      * @return \Illuminate\Http\Response
      */
-    public function show($slug, $id)
+    public function show($slug, $index)
     {
-        $feature = Feature::find($id)->firstOrFail();
+        $feature = Feature::where(['index' => $index])->firstOrFail();
 
         return view('features.show', ['slug' => $slug, 'feature' => $feature] );
     }
@@ -70,12 +82,13 @@ class FeaturesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param App\Spot::$slug
+     * @param  int  $index
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug, $id)
+    public function edit($slug, $index)
     {
-        $feature = Feature::find($id)->firstOrFail();
+        $feature = Feature::where(['index' => $index])->firstOrFail();
 
         return view('features.edit', ['slug' => $slug, 'feature' => $feature] );
     }
@@ -83,13 +96,14 @@ class FeaturesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param App\Spot::$slug
+     * @param  int  $index
+     * @param  \Illuminate\Http\StoreFeature  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($slug, $index, StoreFeature $request)
     {
-        $feature = Feature::find($id)->firstOrFail();
+        $feature = Feature::where(['index' => $index])->firstOrFail();
 
         $feature['updater_id'] = 10;
 
@@ -103,12 +117,13 @@ class FeaturesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param App\Spot::$slug
+     * @param  int  $index
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug ,$index)
     {
-        $feature = Feature::findOrFail($id);
+        $feature = Feature::findOrFail($index);
 
         $deletedRows = $feature->delete();
 
