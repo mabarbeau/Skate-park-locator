@@ -11,8 +11,6 @@ class SpotsTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(App\Spot::class, 50)->create()->each(function($s) {
-        $s->features()->save(factory(App\Feature::class)->make());
-      });
+      factory(App\Spot::class, 50)->create();
     }
 }

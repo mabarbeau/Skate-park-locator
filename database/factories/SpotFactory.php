@@ -35,15 +35,12 @@ $factory->define(App\Spot::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Feature::class, function (Faker\Generator $faker) {
+
     return [
       'name' => $faker->unique()->slug,
       'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-      'index' => 1,
       'lat' => $faker->latitude,
       'lng' => $faker->longitude,
-      'spot_id' => function () {
-          return factory(App\Spot::class)->create()->id;
-      },
       'creator_id' => $faker->numberBetween($min = 1, $max = 100),
       'updater_id' => $faker->numberBetween($min = 1, $max = 100),
     ];
