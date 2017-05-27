@@ -129,12 +129,14 @@ class FeaturesController extends Controller
      */
     public function destroy($slug ,$index)
     {
-        $feature = Feature::findOrFail($index);
+        $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
+
+        $feature = Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
 
         $deletedRows = $feature->delete();
 
         Session::flash('message', "Feature successfully deleted!");
 
-        return redirect('features');
+        return redirect( route('spots.show',  ['slug' => $slug] ) );
     }
 }
