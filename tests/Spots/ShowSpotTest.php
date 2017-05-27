@@ -4,16 +4,6 @@ use App\Spot;
 class ShowSpotTest extends TestCase
 {
     /**
-    * Create create application early for data provider
-    **/
-    public function __construct($name = null, array $data = array(), $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-
-        $this->createApplication();
-    }
-
-    /**
     * Get slug from spot id
     *
     * @param $id
