@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title' , 'Create feature')
+@section('title' , 'Edit feature')
 
 @section('content')
   @if (count($errors) > 0)
@@ -12,8 +12,8 @@
         </ul>
     </div>
   @endif
-  {{dd($feature->index)}}
-  {!! Form::open(['route' => route('features.update', ['slug' => $slug, 'id' => $feature->index]), 'method' => 'patch']) !!}
+
+  {!! Form::open(['url' => route('features.update',['slug' => $slug, 'index' => $feature->index]), 'method' => 'PUT'  ]) !!}
     <div class="form-group">
       {{ Form::label('name', 'Name') }}
       {{ Form::text('name', $feature->name, ['class' => 'form-control']) }}
@@ -25,7 +25,18 @@
     </div>
 
     <div class="form-group">
+      {{ Form::label('lat', 'lat') }}
+      {{ Form::text('lat', $feature->lat, ['class' => 'form-control']) }}
+    </div>
+
+    <div class="form-group">
+      {{ Form::label('lng', 'lng') }}
+      {{ Form::text('lng', $feature->lng, ['class' => 'form-control']) }}
+    </div>
+
+    <div class="form-group">
       {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
     </div>
   {!! Form::close() !!}
+
 @stop

@@ -74,7 +74,9 @@ class FeaturesController extends Controller
      */
     public function show($slug, $index)
     {
-        $feature = Feature::where(['index' => $index])->firstOrFail();
+        $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
+
+        $feature = Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
 
         return view('features.show', ['slug' => $slug, 'feature' => $feature] );
     }
@@ -88,7 +90,9 @@ class FeaturesController extends Controller
      */
     public function edit($slug, $index)
     {
-        $feature = Feature::where(['index' => $index])->firstOrFail();
+        $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
+
+        $feature = Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
 
         return view('features.edit', ['slug' => $slug, 'feature' => $feature] );
     }
@@ -103,7 +107,9 @@ class FeaturesController extends Controller
      */
     public function update($slug, $index, StoreFeature $request)
     {
-        $feature = Feature::where(['index' => $index])->firstOrFail();
+        $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
+
+        $feature = Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
 
         $feature['updater_id'] = 10;
 
@@ -111,7 +117,7 @@ class FeaturesController extends Controller
 
         Session::flash('message', 'Feature successfully updated!');
 
-        return redirect("features/$slug");
+        return redirect( route('spots.show',  ['slug' => $slug] ) );
     }
 
     /**
