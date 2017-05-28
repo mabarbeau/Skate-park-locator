@@ -1,6 +1,11 @@
 <?php
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+
 class CreateSpotTest extends TestCase
 {
+    use DatabaseTransactions;
+
     /**
      * Test spot create route
      *
@@ -19,11 +24,12 @@ class CreateSpotTest extends TestCase
     */
     public function testForm()
     {
+
         $spot = factory(App\Spot::class)->make();
 
         $this->visit('/spots/create')
             ->type($spot->slug, 'slug')
-            ->type($spot->title, 'title')
+            ->type('Test', 'title')
             ->type($spot->description, 'description')
             ->type($spot->address, 'address')
             ->type($spot->locality, 'locality')
