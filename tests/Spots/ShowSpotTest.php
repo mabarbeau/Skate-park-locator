@@ -1,7 +1,7 @@
 <?php
 use App\Spot;
 
-class ShowSpotTest extends TestCase
+class ShowSpotTest extends BrowserKitTestCase
 {
     /**
     * Get slug from spot id

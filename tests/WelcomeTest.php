@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class WelcomeTest extends TestCase
+class WelcomeTest extends BrowserKitTestCase
 {
     /**
      * A basic functional test example.

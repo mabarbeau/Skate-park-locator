@@ -2,7 +2,7 @@
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 
-class CreateSpotTest extends TestCase
+class CreateSpotTest extends BrowserKitTestCase
 {
     use DatabaseTransactions;
 

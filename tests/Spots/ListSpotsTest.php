@@ -1,5 +1,5 @@
 <?php
-class ListSpotsTest extends TestCase
+class ListSpotsTest extends BrowserKitTestCase
 {
     /**
      * Check route is spots index
