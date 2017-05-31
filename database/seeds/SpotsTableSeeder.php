@@ -11,6 +11,13 @@ class SpotsTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(App\Spot::class, 50)->create();
+        $users = App\User::select('id')->inRandomOrder()->get();
+
+        for ($i=0; $i < 100 ; $i++) {
+            factory(App\Spot::class)->create([
+                'creator_id'=> $users[$i]->id,
+                'updater_id'=> $users[$i]->id,
+            ]);
+        }
     }
 }

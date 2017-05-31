@@ -25,12 +25,6 @@ $factory->define(App\Spot::class, function (Faker\Generator $faker) {
       'votes' => $faker->numberBetween($min = 1, $max = 10000),
       'hearts' => $faker->numberBetween($min = 1, $max = 1000),
       'rating' => $faker->numberBetween($min = 1, $max = 5),
-      'creator_id' => function () {
-        return factory(App\User::class)->create()->id;
-      },
-      'updater_id' => function () {
-        return factory(App\User::class)->create()->id;
-      },
     ];
 });
 
@@ -40,8 +34,6 @@ $factory->define(App\Feature::class, function (Faker\Generator $faker) {
       'name' => $faker->unique()->slug,
       'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
       'lat' => $faker->latitude,
-      'lng' => $faker->longitude,
-      'creator_id' => $faker->numberBetween($min = 1, $max = 100),
-      'updater_id' => $faker->numberBetween($min = 1, $max = 100),
+      'lng' => $faker->longitude
     ];
 });

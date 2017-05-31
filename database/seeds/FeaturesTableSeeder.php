@@ -11,12 +11,18 @@ class FeaturesTableSeeder extends Seeder
      */
     public function run()
     {
-          for ($i=0; $i < 100 ; $i++) {
-              $spot = App\Spot::inRandomOrder()->firstOrFail();
+        $users = App\User::select('id')->inRandomOrder()->get();
+        for ($i=0; $i < 100 ; $i++) {
+            $spot = App\Spot::inRandomOrder()->firstOrFail();
 
-              $count = App\Feature::where('spot_id', $spot->id)->count();
+            $count = App\Feature::where('spot_id', $spot->id)->count();
 
-              factory(App\Feature::class)->create(['spot_id' => $spot->id, 'index' => $count]);
-          }
+            factory(App\Feature::class)->create([
+                'creator_id'=> $users[$i]->id,
+                'updater_id'=> $users[$i]->id,
+                'spot_id' => $spot->id,
+                'index' => $count,
+             ]);
+        }
     }
 }
