@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('users/{user}', function (App\User $user) {
+    return $user;
+});
+
 Route::get('spots/{spot}', function (App\Spot $spot) {
     return $spot;
 });
