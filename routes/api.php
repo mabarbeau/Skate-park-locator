@@ -19,4 +19,4 @@ Route::get('users/{user}', function (App\User $user) {
 
 Route::get('spots/{spot}', function (App\Spot $spot) {
     return $spot;
-});
+})->middleware('cors');
