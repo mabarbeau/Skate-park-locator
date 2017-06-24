@@ -11,6 +11,15 @@ use App\Http\Requests\StoreSpot;
 
 class SpotsController extends Controller
 {
+    /**
+     * Instantiate a new SpotsController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('cors');
+    }
+
+
   /**
    * Display a listing of the spots.
    *

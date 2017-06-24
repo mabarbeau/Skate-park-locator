@@ -17,6 +17,4 @@ Route::get('users/{user}', function (App\User $user) {
     return $user;
 });
 
-Route::get('spots/{spot}', function (App\Spot $spot) {
-    return $spot;
-})->middleware('cors');
+Route::resource('spots', 'SpotsController');
