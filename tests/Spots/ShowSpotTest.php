@@ -4,36 +4,19 @@ use App\Spot;
 class ShowSpotTest extends BrowserKitTestCase
 {
     /**
-    * Get slug from spot id
-    *
-    * @param $id
-    *
-    * @return $slug
-    **/
-
-    protected function getSlugFromId($id)
-    {
-        $spot = Spot::find($id);
-
-        return $spot->slug;
-    }
-
-
-    /**
     * Provide test with random slugs from spots table
     *
     * @return $slug
     **/
     public function slugProvider()
     {
-        $totalSpots = Spot::count();
-        $test = [];
+        $spots = Spot::select('slug')->inRandomOrder()->take(3)->get();
 
-        for ($i=0; $i < 2; $i++)
+        foreach ($spots as $spot)
         {
-            $slug = self::getSlugFromId(mt_rand(1,$totalSpots));
-            $test["Testing 'spots/$slug'"] = [$slug];
+            $test["Testing '$spot->slug'"] = [$spot->slug];
         }
+
         return $test;
     }
 
