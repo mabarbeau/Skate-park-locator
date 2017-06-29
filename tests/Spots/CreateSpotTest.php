@@ -38,7 +38,7 @@ class CreateSpotTest extends BrowserKitTestCase
             ->type($spot->country, 'country')
             ->type($spot->map, 'map')
             ->press('Submit')
-            ->seeRouteIs('spots.index');
+            ->seeRouteIs('spots.show', ['slug' => $spot->slug]);
     }
 
 }

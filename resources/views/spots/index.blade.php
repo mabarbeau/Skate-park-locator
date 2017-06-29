@@ -4,6 +4,7 @@
 
 @section('content')
 
+  <a href="/api/spots" class="btn btn-primary"> Api </a>
   <a href="{{route('spots.create')}}" class="btn btn-primary"> Create new </a>
   <ul>
     @foreach ($spots as $spot)
@@ -14,4 +15,5 @@
         </li>
     @endforeach
   </ul>
+  {{ $spots->links() }}
 @stop

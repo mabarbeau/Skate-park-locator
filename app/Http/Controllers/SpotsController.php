@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
 
 use App\Spot;
 use App\Backup;
@@ -12,7 +11,7 @@ use App\Http\Requests\StoreSpot;
 class SpotsController extends Controller
 {
     /**
-     * Instantiate a new SpotsController instance.
+     * Instantiate a new SpotsController instance with Cross-origin resource sharing (CORS) middleware
      */
     public function __construct()
     {
@@ -20,85 +19,74 @@ class SpotsController extends Controller
     }
 
 
-  /**
-   * Display a listing of the spots.
-   *
-   * @return \Illuminate\Http\Response
-   */
+    /**
+     * Return a paginated list of spots
+     *
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
     protected function index()
     {
-      return view('spots.index', ['spots' => $spots = Spot::all() ]);
+      return ['spots' => Spot::select(['title','slug'])->paginate() ];
     }
 
     /**
-     * Show the form for creating a new spots.
+     * Return a new instance of App\Spot.
      *
-     * @return \Illuminate\Http\Response
+     * @return App\Spot
      */
     protected function create()
     {
-      $spot = new Spot;
-
-      return view('spots.create', compact('spot'));
+        return new Spot;
     }
 
     /**
-     * Store a newly created spots in storage.
+     * Store a newly created spot in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Illuminate\Http\Request  $request
+     * @return App\Spot
      */
     protected function store(StoreSpot $request)
     {
-      $save = $request->all();
+        $save = $request->all();
 
-      // Hardcoded defaults
-      $save['rating'] = null;
+        // Hardcoded defaults
+        $save['rating'] = null;
 
-      //TODO: Get creator id
-      $save['creator_id'] = 1;
-      $save['updater_id'] = 10;
-      // var_dump($save);
+        //TODO: Get creator id
+        $save['creator_id'] = 1;
+        $save['updater_id'] = 10;
 
-      Spot::create($save);
-
-      Session::flash('message', 'Spot successfully added!');
-
-      return redirect('spots');
+        return Spot::create($save);
     }
 
     /**
-     * Display the specified spots.
+     * Display the specified spot.
      *
-     * @param  int  $slug
-     * @return \Illuminate\Http\Response
+     * @param  string $slug
+     * @return App\Spot
      */
     protected function show($slug)
     {
-      $spot = Spot::where('slug', $slug)->firstOrFail();
-
-      return view('spots.show', compact('spot'));
+      return Spot::where('slug', $slug)->firstOrFail();
     }
 
     /**
-     * Show the form for editing the specified spots.
+     * Show the form for editing the specified spot.
      *
-     * @param  int  $slug
-     * @return \Illuminate\Http\Response
+     * @param  string $slug
+     * @return App\Spot
      */
     protected function edit($slug)
     {
-      $spot = Spot::where('slug', $slug)->firstOrFail();
-
-      return view('spots.edit', compact('spot') );
+      return Spot::where('slug', $slug)->firstOrFail();
     }
 
     /**
-     * Update the specified spots in storage.
+     * Update the specified spot in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $slug
-     * @return \Illuminate\Http\Response
+     * @param  Illuminate\Http\Request  $request
+     * @param  string $slug
+     * @return App\Spot
      */
     public function update(StoreSpot $request, $slug)
     {
@@ -108,16 +96,14 @@ class SpotsController extends Controller
 
       $spot->fill( $request->all() )->save();
 
-      Session::flash('message', 'Spot successfully updated!');
-
-      return redirect("spots/$slug");
+      return $spot;
     }
 
     /**
-     * Remove the specified spots from storage.
+     * Remove the specified spot from storage.
      *
-     * @param  int  $slug
-     * @return \Illuminate\Http\Response
+     * @param  string $slug
+     * @return Illuminate\Http\Response
      */
     public function destroy($slug)
     {
@@ -128,11 +114,7 @@ class SpotsController extends Controller
             'data' => json_encode($spot),
         ]);
 
-        $deletedRows = $spot->delete();
-
-        Session::flash('message', 'Spot successfully deleted!');
-
-        return redirect('spots');
+        return $spot->delete();
     }
 
 }
