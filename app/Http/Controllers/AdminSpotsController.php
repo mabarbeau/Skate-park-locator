@@ -42,7 +42,7 @@ class AdminSpotsController extends SpotsController
     {
         $spot = parent::store($request);
 
-        Session::flash('message', 'Spot successfully added!');
+        Session::flash('message', 'Spot successfully created!');
 
         return redirect("spots/$spot->slug");
     }
