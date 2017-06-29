@@ -4,7 +4,7 @@ Route::get('/', function () {
 });
 
 Route::resource('spots/{slug}/features', 'FeaturesController');
-Route::resource('spots', 'AdminSpotsController');
+Route::resource('spots', 'Admin\SpotsController');
 
 Auth::routes();
 

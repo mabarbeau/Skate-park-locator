@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Session;
 use App\Http\Requests\StoreSpot;
-use App\Http\Controllers\SpotsController;
+use App\Http\Controllers\SpotsController as BaseSpotsController;
 
-class AdminSpotsController extends SpotsController
+class SpotsController extends BaseSpotsController
 {
     /**
      * Display a listing of the spots.
