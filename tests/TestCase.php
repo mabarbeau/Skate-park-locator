@@ -26,4 +26,22 @@ abstract class TestCase extends BaseTestCase
 
         return $app;
     }
+
+    /**
+    * Provide three random rows from the spots table
+    *
+    * @return array  $test
+    **/
+    public function spotProvider()
+    {
+        $spots = \App\Spot::select('slug', 'title')->inRandomOrder()->take(3)->get();
+
+        foreach ($spots as $spot)
+        {
+            $test["\n\n Title: $spot->title \n Slug: $spot->slug \n\n"] = [$spot];
+        }
+
+        return $test;
+    }
+
 }
