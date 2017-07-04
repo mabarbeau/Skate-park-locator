@@ -6,7 +6,7 @@ class ShowSpotTest extends BrowserKitTestCase
     /**
     *
     *
-    * @param $spot
+    * @param $slug
     *
     * @dataProvider slugProvider
     *
