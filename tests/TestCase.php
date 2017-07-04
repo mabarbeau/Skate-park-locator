@@ -28,6 +28,23 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
+    * Create three new rows for the spots table
+    *
+    * @return array  $test
+    **/
+    public function spotFactoryProvider()
+    {
+        $spots = factory(\App\Spot::class, 3)->make();
+
+        foreach ($spots as $spot)
+        {
+            $test["\n\n Title: $spot->title \n Slug: $spot->slug \n\n"] = [$spot];
+        }
+
+        return $test;
+    }
+
+    /**
     * Provide three random rows from the spots table
     *
     * @return array  $test
@@ -39,6 +56,40 @@ abstract class TestCase extends BaseTestCase
         foreach ($spots as $spot)
         {
             $test["\n\n Title: $spot->title \n Slug: $spot->slug \n\n"] = [$spot];
+        }
+
+        return $test;
+    }
+
+    /**
+    * Make three new rows for the features table
+    *
+    * @return array  $test
+    **/
+    public function featureFactoryProvider()
+    {
+        $features = factory(\App\Feature::class, 3)->make();
+
+        foreach ($features as $feature)
+        {
+            $test["\n\n name: $feature->name \n description: $feature->description \n\n"] = [$feature];
+        }
+
+        return $test;
+    }
+
+    /**
+    * Provide three random rows from the features table
+    *
+    * @return array  $test
+    **/
+    public function featureProvider()
+    {
+        $features = \App\Feature::take(3)->inRandomOrder()->get();
+
+        foreach ($features as $feature)
+        {
+            $test["\n\n spot_id: $feature->spot_id \n index: $feature->index \n name: $feature->name \n description: $feature->description \n\n"] = [$feature];
         }
 
         return $test;
