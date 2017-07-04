@@ -5,8 +5,18 @@ class ShowSpotTest extends BrowserKitTestCase
 {
     /**
     *
+    *
+    * @param $spot
+    *
+    * @dataProvider slugProvider
+    *
+    * @return void
+    */
+    public function testSpotApiResponce($slug)
     {
+        $response = $this->call('GET', "/api/spots/$slug");
 
+        $this->assertEquals(200, $response->status());
     }
 
     /**
