@@ -8,23 +8,6 @@ class EditSpotTest extends BrowserKitTestCase
     use DatabaseTransactions;
 
     /**
-    * Provide test with random slugs from spots table
-    *
-    * @return $slug
-    **/
-    public function slugProvider()
-    {
-        $spots = Spot::select('slug')->inRandomOrder()->take(3)->get();
-
-        foreach ($spots as $spot)
-        {
-            $test["Testing '$spot->slug'"] = [$spot->slug];
-        }
-
-        return $test;
-    }
-
-    /**
      * Test spot edit route
      *
      * @param $slug
