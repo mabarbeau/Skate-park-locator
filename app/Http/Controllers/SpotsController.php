@@ -71,7 +71,7 @@ class SpotsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified spot.
+     * Display the specified spot.
      *
      * @param  string $slug
      * @return App\Spot
