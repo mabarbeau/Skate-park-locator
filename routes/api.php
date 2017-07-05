@@ -17,4 +17,5 @@ Route::get('users/{user}', function (App\User $user) {
     return $user;
 });
 
+Route::resource('spots/{slug}/features', 'FeaturesController');
 Route::resource('spots', 'SpotsController');
