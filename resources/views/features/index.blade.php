@@ -4,7 +4,9 @@
 
 @section('content')
 
-  <a href="features/create" class="btn btn-primary"> Create new </a>
+  <a href="/api/spots/{{$slug}}/features/" class="btn btn-default"> Api </a>
+
+  <a href="/spots/{{$slug}}/features/create" class="btn btn-primary"> Create new </a>
 
   <ul>
     @foreach ($features as $feature)

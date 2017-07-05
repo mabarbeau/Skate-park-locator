@@ -5,6 +5,8 @@
 @stop
 
 @section('content')
+  <a href="/api/spots/{{$slug}}/features/{{$feature->index}}" class="btn btn-primary"> Api </a>
+
   <a href="{{route('features.update', ['slug'=> $slug, 'feature' => $feature->index])}}/edit" class="btn btn-default">Edit</a>
   {{ Form::open(['url' => route('features.destroy', ['slug' => $slug, 'index' => $feature->index ] ), 'method' => 'delete']) }}
     <button class="btn btn-dangers" type="submit">Delete</button>
