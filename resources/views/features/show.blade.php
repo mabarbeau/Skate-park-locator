@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  {{$feature->name}}
+  {{$feature->key}}
 @stop
 
 @section('content')
@@ -17,17 +17,12 @@
       <h3>
         <li>
           {{$feature->index}}
-          {{$feature->name}}
+          {{$feature->key}}
         </li>
       </h3>
 
       <ul>
-        <li>{{$feature->name}}</li>
-        <li>{{$feature->description}}</li>
-        <li>{{$feature->lat}}</li>
-        <li>{{$feature->lng}}</li>
-        <li>{{$feature->creator_id}}</li>
-        <li>{{$feature->updater_id}}</li>
+        <li>{{$feature->key}} : {{$feature->value}}</li>
       </ul>
   </ol>
 @stop

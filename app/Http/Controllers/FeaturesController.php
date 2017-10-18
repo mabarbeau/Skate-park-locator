@@ -57,8 +57,6 @@ class FeaturesController extends Controller
         $save['spot_id'] = $spot->id;
 
         $save['index'] = 1 + Feature::where('spot_id', $spot->id)->count();
-        $save['creator_id'] = '1';
-        $save['updater_id'] = '1';
 
         return Feature::create($save);
      }
@@ -106,8 +104,6 @@ class FeaturesController extends Controller
         $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
 
         $feature = Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
-
-        $feature['updater_id'] = 10;
 
         return $feature->fill( $request->all() )->save();
     }

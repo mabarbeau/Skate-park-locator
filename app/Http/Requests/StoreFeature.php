@@ -24,10 +24,8 @@ class StoreFeature extends FormRequest
     public function rules()
     {
         return [
-          'name'=> 'required',
-          'description'=> 'required',
-          'lat'=> 'required',
-          'lng'=> 'required',
+          'key'=> 'required',
+          'value'=> 'required',
         ];
     }
 }

@@ -15,23 +15,13 @@
 
   {!! Form::open(['url' => route('features.update',['slug' => $slug, 'index' => $feature->index]), 'method' => 'PUT'  ]) !!}
     <div class="form-group">
-      {{ Form::label('name', 'Name') }}
-      {{ Form::text('name', $feature->name, ['class' => 'form-control']) }}
+      {{ Form::label('key', 'Key') }}
+      {{ Form::text('key', $feature->key, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
-      {{ Form::label('description', 'Description') }}
-      {{ Form::text('description', $feature->description, ['class' => 'form-control']) }}
-    </div>
-
-    <div class="form-group">
-      {{ Form::label('lat', 'lat') }}
-      {{ Form::text('lat', $feature->lat, ['class' => 'form-control']) }}
-    </div>
-
-    <div class="form-group">
-      {{ Form::label('lng', 'lng') }}
-      {{ Form::text('lng', $feature->lng, ['class' => 'form-control']) }}
+      {{ Form::label('value', 'Value') }}
+      {{ Form::text('value', $feature->value, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">

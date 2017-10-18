@@ -72,7 +72,7 @@ abstract class TestCase extends BaseTestCase
 
         foreach ($features as $feature)
         {
-            $test["\n\n name: $feature->name \n description: $feature->description \n\n"] = [$feature];
+            $test["\n\n key: $feature->key \n value: $feature->value \n\n"] = [$feature];
         }
 
         return $test;
@@ -89,7 +89,7 @@ abstract class TestCase extends BaseTestCase
 
         foreach ($features as $feature)
         {
-            $test["\n\n spot_id: $feature->spot_id \n index: $feature->index \n name: $feature->name \n description: $feature->description \n\n"] = [$feature];
+            $test["\n\n spot_id: $feature->spot_id \n index: $feature->index \n key: $feature->key \n value: $feature->value \n\n"] = [$feature];
         }
 
         return $test;

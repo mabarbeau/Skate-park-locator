@@ -16,16 +16,10 @@ class CreateTableFeature extends Migration
         Schema::create('features', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('index')->unsigned();
-            $table->string('name', 100);
-            $table->longText('description');
-            $table->float('lat', 10, 6);
-            $table->float('lng', 10, 6);
+            $table->string('key', 100);
+            $table->string('value', 100);
             $table->integer('spot_id')->unsigned();
             $table->foreign('spot_id')->references('id')->on('spots')->onDelete('cascade');;
-            $table->integer('creator_id')->unsigned();
-            $table->foreign('creator_id')->references('id')->on('users');
-            $table->integer('updater_id')->unsigned();
-            $table->foreign('updater_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -7,20 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Feature extends Model
 {
   /**
-  * The attributes that are mass assignable.
+  * The attributes that are not mass assignable.
   *
   * @var array
   */
-  protected $fillable = [
-    'name',
-    'index',
-    'description',
-    'spot_id',
-    'creator_id',
-    'updater_id',
-    'lat',
-    'lng',
-  ];
+  protected $guarded = [];
 
   public function spot()
   {

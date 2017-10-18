@@ -67,14 +67,13 @@
       <h3>
         <li>
           <a href="{{route('features.show', ['slug'=> $spot->slug, 'feature'=> $feature->index])}}">
-            {{$feature->name}}
+            {{$feature->key}}
           </a>
         </li>
       </h3>
 
       <ul>
-        <li>{{$feature->description}}</li>
-        <li>{{$feature->creator_id}}</li>
+        <li>{{$feature->value}}</li>
       </ul>
 
     @endforeach
