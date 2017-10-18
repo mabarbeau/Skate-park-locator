@@ -62,34 +62,34 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-    * Make three new rows for the features table
+    * Make three new rows for the tags table
     *
     * @return array  $test
     **/
-    public function featureFactoryProvider()
+    public function tagFactoryProvider()
     {
-        $features = factory(\App\Feature::class, 3)->make();
+        $tags = factory(\App\Tag::class, 3)->make();
 
-        foreach ($features as $feature)
+        foreach ($tags as $tag)
         {
-            $test["\n\n key: $feature->key \n value: $feature->value \n\n"] = [$feature];
+            $test["\n\n key: $tag->key \n value: $tag->value \n\n"] = [$tag];
         }
 
         return $test;
     }
 
     /**
-    * Provide three random rows from the features table
+    * Provide three random rows from the tags table
     *
     * @return array  $test
     **/
-    public function featureProvider()
+    public function tagProvider()
     {
-        $features = \App\Feature::take(3)->inRandomOrder()->get();
+        $tags = \App\Tag::take(3)->inRandomOrder()->get();
 
-        foreach ($features as $feature)
+        foreach ($tags as $tag)
         {
-            $test["\n\n spot_id: $feature->spot_id \n index: $feature->index \n key: $feature->key \n value: $feature->value \n\n"] = [$feature];
+            $test["\n\n spot_id: $tag->spot_id \n index: $tag->index \n key: $tag->key \n value: $tag->value \n\n"] = [$tag];
         }
 
         return $test;

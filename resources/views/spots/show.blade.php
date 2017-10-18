@@ -57,23 +57,23 @@
      </li>
   </ul>
 
-  <h2>Features</h2>
-  <a href="{{route('features.create', $spot->slug)}}" class="btn btn-default">
+  <h2>Tags</h2>
+  <a href="{{route('tags.create', $spot->slug)}}" class="btn btn-default">
     Create
   </a>
   <ol>
-    @foreach($spot->features as $feature)
+    @foreach($spot->tags as $tag)
 
       <h3>
         <li>
-          <a href="{{route('features.show', ['slug'=> $spot->slug, 'feature'=> $feature->index])}}">
-            {{$feature->key}}
+          <a href="{{route('tags.show', ['slug'=> $spot->slug, 'tag'=> $tag->index])}}">
+            {{$tag->key}}
           </a>
         </li>
       </h3>
 
       <ul>
-        <li>{{$feature->value}}</li>
+        <li>{{$tag->value}}</li>
       </ul>
 
     @endforeach

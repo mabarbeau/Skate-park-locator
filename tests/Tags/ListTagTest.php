@@ -1,24 +1,24 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Tag;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ListFeatureTest extends TestCase
+class ListTagTest extends TestCase
 {
   /**
-   * Test list features for a given spot
+   * Test list tags for a given spot
    *
    * @dataProvider spotProvider
    *
    * @return void
    */
-  public function testListFeature(\App\Spot $spot)
+  public function testListTag(\App\Spot $spot)
   {
-    $response = $this->get("/spots/$spot->slug/features");
+    $response = $this->get("/spots/$spot->slug/tags");
 
     $response->assertStatus(200);
   }

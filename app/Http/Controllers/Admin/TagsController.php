@@ -4,23 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use Session;
 
-use App\Http\Controllers\FeaturesController as BaseFeaturesController;
+use App\Http\Controllers\TagsController as BaseTagsController;
 
-use App\Http\Requests\StoreFeature;
+use App\Http\Requests\StoreTag;
 
-class FeaturesController extends BaseFeaturesController
+class TagsController extends BaseTagsController
 {
     /**
-     * Display a listing of all features for a single of spot
+     * Display a listing of all tags for a single of spot
      *
      * @param App\Spot::$slug
      * @return \Illuminate\View\View
      */
     public function index($slug)
     {
-        $features = parent::index($slug);
+        $tags = parent::index($slug);
 
-        return view('features.index',  ['slug' => $slug, 'features' => $features]);
+        return view('tags.index',  ['slug' => $slug, 'tags' => $tags]);
     }
 
     /**
@@ -31,23 +31,23 @@ class FeaturesController extends BaseFeaturesController
      */
     public function create($slug)
     {
-        $feature = parent::create($slug);
+        $tag = parent::create($slug);
 
-        return view('features.create', ['slug' => $slug, 'feature' => $feature] );
+        return view('tags.create', ['slug' => $slug, 'tag' => $tag] );
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param App\Spot::$slug
-     * @param  App\Request\StoreFeature $request
+     * @param  App\Request\StoreTag $request
      * @return \Illuminate\Http\RedirectResponse
      */
-     protected function store($slug, StoreFeature $request)
+     protected function store($slug, StoreTag $request)
      {
-        $feature = parent::store($slug, $request);
+        $tag = parent::store($slug, $request);
 
-        Session::flash('message', 'Feature successfully added!');
+        Session::flash('message', 'Tag successfully added!');
 
         return redirect( route('spots.show',  ['slug' => $slug] ) );
      }
@@ -62,9 +62,9 @@ class FeaturesController extends BaseFeaturesController
      */
     public function show($slug, $index)
     {
-        $feature = parent::show($slug, $index);
+        $tag = parent::show($slug, $index);
 
-        return view('features.show', ['slug' => $slug, 'feature' => $feature] );
+        return view('tags.show', ['slug' => $slug, 'tag' => $tag] );
     }
 
     /**
@@ -76,9 +76,9 @@ class FeaturesController extends BaseFeaturesController
      */
     public function edit($slug, $index)
     {
-        $feature = parent::edit($slug, $index);
+        $tag = parent::edit($slug, $index);
 
-        return view('features.edit', ['slug' => $slug, 'feature' => $feature] );
+        return view('tags.edit', ['slug' => $slug, 'tag' => $tag] );
     }
 
     /**
@@ -86,14 +86,14 @@ class FeaturesController extends BaseFeaturesController
      *
      * @param App\Spot::$slug
      * @param  int  $index
-     * @param  \Illuminate\Http\StoreFeature  $request
+     * @param  \Illuminate\Http\StoreTag  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($slug, $index, StoreFeature $request)
+    public function update($slug, $index, StoreTag $request)
     {
         $success = parent::update($slug, $index, $request);
 
-        Session::flash('message', 'Feature successfully updated!');
+        Session::flash('message', 'Tag successfully updated!');
 
         return redirect( route('spots.show',  ['slug' => $slug] ) );
     }
@@ -109,7 +109,7 @@ class FeaturesController extends BaseFeaturesController
     {
         $deletedRows = parent::destroy($slug, $index);
 
-        Session::flash('message', "Feature successfully deleted!");
+        Session::flash('message', "Tag successfully deleted!");
 
         return redirect( route('spots.show',  ['slug' => $slug] ) );
     }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Feature extends Model
+class Tag extends Model
 {
   /**
   * The attributes that are not mass assignable.

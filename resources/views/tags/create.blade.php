@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title' , 'Edit feature')
+@section('title' , 'Create tag')
 
 @section('content')
   @if (count($errors) > 0)
@@ -13,15 +13,15 @@
     </div>
   @endif
 
-  {!! Form::open(['url' => route('features.update',['slug' => $slug, 'index' => $feature->index]), 'method' => 'PUT'  ]) !!}
+  {!! Form::open(['url' => route('tags.store',['slug' => $slug])]) !!}
     <div class="form-group">
       {{ Form::label('key', 'Key') }}
-      {{ Form::text('key', $feature->key, ['class' => 'form-control']) }}
+      {{ Form::text('key', $tag->key, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
       {{ Form::label('value', 'Value') }}
-      {{ Form::text('value', $feature->value, ['class' => 'form-control']) }}
+      {{ Form::text('value', $tag->value, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">

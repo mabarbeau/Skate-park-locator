@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Spot;
-use App\Feature;
-use App\Http\Requests\StoreFeature;
+use App\Tag;
+use App\Http\Requests\StoreTag;
 
-class FeaturesController extends Controller
+class TagsController extends Controller
 {
     /**
-     * Instantiate a new FeaturesController instance with Cross-origin resource sharing (CORS) middleware
+     * Instantiate a new TagsController instance with Cross-origin resource sharing (CORS) middleware
      */
     public function __construct()
     {
@@ -19,7 +19,7 @@ class FeaturesController extends Controller
     }
 
     /**
-     * Return a collection list of features for spot with provided slug
+     * Return a collection list of tags for spot with provided slug
      *
      * @param App\Spot::$slug
      * @return \Illuminate\Database\Eloquent\Collection
@@ -28,88 +28,88 @@ class FeaturesController extends Controller
     {
         $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
 
-        return Feature::where('spot_id', $spot->id)->get();
+        return Tag::where('spot_id', $spot->id)->get();
     }
 
     /**
-     * Return a new instance of App\Feature
+     * Return a new instance of App\Tag
      *
      * @param App\Spot::$slug
-     * @return App\Feature
+     * @return App\Tag
      */
     public function create($slug)
     {
-        return new Feature;
+        return new Tag;
     }
 
     /**
-     * Store a newly created feature in storage.
+     * Store a newly created tag in storage.
      *
      * @param App\Spot::$slug
-     * @param  App\Request\StoreFeature $request
-     * @return App\Feature
+     * @param  App\Request\StoreTag $request
+     * @return App\Tag
      */
-     protected function store($slug, StoreFeature $request)
+     protected function store($slug, StoreTag $request)
      {
         $save = $request->all();
 
         $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
         $save['spot_id'] = $spot->id;
 
-        $save['index'] = 1 + Feature::where('spot_id', $spot->id)->count();
+        $save['index'] = 1 + Tag::where('spot_id', $spot->id)->count();
 
-        return Feature::create($save);
+        return Tag::create($save);
      }
 
 
     /**
-     * Display the specified feature.
+     * Display the specified tag.
      *
      * @param App\Spot::$slug
      * @param  int  $index
-     * @return App\Feature
+     * @return App\Tag
      */
     public function show($slug, $index)
     {
         $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
 
-        return Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
+        return Tag::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
     }
 
     /**
-     * Display the specified feature.
+     * Display the specified tag.
      *
      * @param App\Spot::$slug
      * @param  int  $index
-     * @return App\Feature
+     * @return App\Tag
      */
     public function edit($slug, $index)
     {
         $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
 
-        return Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
+        return Tag::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
 
     }
 
     /**
-     * Update the specified feature in storage.
+     * Update the specified tag in storage.
      *
      * @param App\Spot::$slug
      * @param  int  $index
-     * @param  \Illuminate\Http\StoreFeature  $request
+     * @param  \Illuminate\Http\StoreTag  $request
      * @return bool
      */
-    public function update($slug, $index, StoreFeature $request)
+    public function update($slug, $index, StoreTag $request)
     {
         $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
 
-        $feature = Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
+        $tag = Tag::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
 
-        return $feature->fill( $request->all() )->save();
+        return $tag->fill( $request->all() )->save();
     }
 
     /**
-     * Remove the specified feature from storage.
+     * Remove the specified tag from storage.
      *
      * @param App\Spot::$slug
      * @param  int  $index
@@ -119,8 +119,8 @@ class FeaturesController extends Controller
     {
         $spot = Spot::select('id')->where('slug', $slug)->firstOrFail();
 
-        $feature = Feature::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
+        $tag = Tag::where(['spot_id' => $spot->id ,'index' => $index])->firstOrFail();
 
-        return $feature->delete();
+        return $tag->delete();
     }
 }

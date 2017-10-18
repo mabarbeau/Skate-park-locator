@@ -13,9 +13,9 @@ class Spot extends Model
     'id'
   ];
 
-  public function features()
+  public function tags()
   {
-    return $this->hasMany(Feature::class);
+    return $this->hasMany(Tag::class);
   }
   /**
  * Get the route key for the model.

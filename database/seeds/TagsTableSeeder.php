@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class FeaturesTableSeeder extends Seeder
+class TagsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class FeaturesTableSeeder extends Seeder
         for ($i=0; $i < 300 ; $i++) {
             $spot = App\Spot::inRandomOrder()->firstOrFail();
 
-            $count = App\Feature::where('spot_id', $spot->id)->count();
+            $count = App\Tag::where('spot_id', $spot->id)->count();
 
-            factory(App\Feature::class)->create([
+            factory(App\Tag::class)->create([
                 'spot_id' => $spot->id,
                 'index' => $count,
              ]);

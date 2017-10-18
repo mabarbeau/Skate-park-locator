@@ -13,7 +13,7 @@ class CreateTableFeature extends Migration
      */
     public function up()
     {
-        Schema::create('features', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('index')->unsigned();
             $table->string('key', 100);
@@ -31,6 +31,6 @@ class CreateTableFeature extends Migration
      */
     public function down()
     {
-        Schema::drop('features');
+        Schema::drop('tags');
     }
 }
