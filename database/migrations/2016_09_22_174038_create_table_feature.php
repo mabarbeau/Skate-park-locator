@@ -19,7 +19,7 @@ class CreateTableFeature extends Migration
             $table->string('key', 100);
             $table->string('value', 100);
             $table->integer('spot_id')->unsigned();
-            $table->foreign('spot_id')->references('id')->on('spots')->onDelete('cascade');;
+            $table->foreign('spot_id')->references('id')->on('spots')->onDelete('cascade');
             $table->timestamps();
         });
     }
