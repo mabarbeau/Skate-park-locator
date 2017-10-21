@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Tag;
+namespace Tests\FeatureTag;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

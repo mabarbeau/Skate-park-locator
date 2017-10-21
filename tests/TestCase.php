@@ -1,31 +1,23 @@
 <?php
+
 namespace Tests;
 
-use \Illuminate\Contracts\Console\Kernel;
-use \Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+
+use App\Spot;
+use App\Tag;
 
 abstract class TestCase extends BaseTestCase
 {
-    /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected $baseUrl = 'http://localhost';
+    use CreatesApplication;
 
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        $app = require __DIR__.'/../bootstrap/app.php';
+    public function __construct($name = null, array $data = array(), $dataName = '') {
+        
+        parent::__construct($name, $data, $dataName);
 
-        $app->make(Kernel::class)->bootstrap();
-
-        return $app;
+        $this->createApplication();
     }
+
 
     /**
     * Create three new rows for the spots table
@@ -34,7 +26,7 @@ abstract class TestCase extends BaseTestCase
     **/
     public function spotFactoryProvider()
     {
-        $spots = factory(\App\Spot::class, 3)->make();
+        $spots = factory(Spot::class, 3)->make();
 
         foreach ($spots as $spot)
         {
@@ -51,7 +43,7 @@ abstract class TestCase extends BaseTestCase
     **/
     public function spotProvider()
     {
-        $spots = \App\Spot::select('slug', 'title')->inRandomOrder()->take(3)->get();
+        $spots = Spot::select('slug', 'title')->inRandomOrder()->take(3)->get();
 
         foreach ($spots as $spot)
         {
@@ -68,7 +60,7 @@ abstract class TestCase extends BaseTestCase
     **/
     public function tagFactoryProvider()
     {
-        $tags = factory(\App\Tag::class, 3)->make();
+        $tags = factory(Tag::class, 3)->make();
 
         foreach ($tags as $tag)
         {
@@ -85,7 +77,7 @@ abstract class TestCase extends BaseTestCase
     **/
     public function tagProvider()
     {
-        $tags = \App\Tag::take(3)->inRandomOrder()->get();
+        $tags = Tag::take(3)->inRandomOrder()->get();
 
         foreach ($tags as $tag)
         {
