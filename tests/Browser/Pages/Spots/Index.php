@@ -1,10 +1,11 @@
 <?php
 
-namespace Tests\Browser\Pages;
+namespace Tests\Browser\Pages\Spots;
 
 use Laravel\Dusk\Browser;
+use Laravel\Dusk\Page as BasePage;
 
-class HomePage extends Page
+class Index extends BasePage
 {
     /**
      * Get the URL for the page.
@@ -13,7 +14,7 @@ class HomePage extends Page
      */
     public function url()
     {
-        return '/';
+        return '/spots/';
     }
 
     /**
@@ -24,7 +25,11 @@ class HomePage extends Page
      */
     public function assert(Browser $browser)
     {
-        //
+        $browser
+            ->assertPathIs($this->url())
+            ->assertRouteIs('spots.index')
+            ->clickLink('Create new')
+            ->assertRouteIs('spots.create');
     }
 
     /**
@@ -34,8 +39,6 @@ class HomePage extends Page
      */
     public function elements()
     {
-        return [
-            '@element' => '#selector',
-        ];
+        return [];
     }
 }
