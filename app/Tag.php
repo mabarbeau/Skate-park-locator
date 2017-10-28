@@ -15,6 +15,6 @@ class Tag extends Model
 
   public function spot()
   {
-    return $this->belongsTo(Spot::class);
+    return $this->belongsTo('App\Spot');
   }
 }

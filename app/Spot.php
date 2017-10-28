@@ -15,7 +15,7 @@ class Spot extends Model
 
   public function tags()
   {
-    return $this->hasMany(Tag::class);
+    return $this->hasMany('App\Tag');
   }
   /**
  * Get the route key for the model.
