@@ -5,12 +5,17 @@ use Illuminate\Database\Seeder;
 class EntrustSeeder extends Seeder
 {
     protected $roles = [
-        0 => [
+        [
+            'name' => 'user',
+            'display_name' => 'Basic User',
+            'description' => 'User account has been verifed',
+        ],
+        [
             'name' => 'owner',
             'display_name' => 'Project Owner',
             'description' => 'User is the owner of a given project',
         ],
-        1 => [
+        [
             'name' => 'admin',
             'display_name' => 'User Administrator',
             'description' => 'User is allowed to manage and edit other users',
