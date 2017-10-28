@@ -24,14 +24,24 @@ class EntrustSeeder extends Seeder
 
     protected $permissions = [
         [
-            'name' => 'create-post',
-            'display_name' => 'Create Posts',
-            'description' => 'create new blog posts',
+            'name' => 'create',
+            'display_name' => 'Create',
         ],
         [
-            'name' => 'edit-user',
-            'display_name' => 'Edit Users',
-            'description' => 'edit existing users',
+            'name' => 'read',
+            'display_name' => 'Read',
+        ],
+        [
+            'name' => 'update',
+            'display_name' => 'Update',
+        ],
+        [
+            'name' => 'delete',
+            'display_name' => 'Delete',
+        ],
+        [
+            'name' => 'restore',
+            'display_name' => 'Restore',
         ],
     ];
 
