@@ -23,12 +23,12 @@ class EntrustSeeder extends Seeder
     ];
 
     protected $permissions = [
-        0 => [
+        [
             'name' => 'create-post',
             'display_name' => 'Create Posts',
             'description' => 'create new blog posts',
         ],
-        1 => [
+        [
             'name' => 'edit-user',
             'display_name' => 'Edit Users',
             'description' => 'edit existing users',
@@ -47,7 +47,7 @@ class EntrustSeeder extends Seeder
     }
 
     protected function create($type, $data){
-        foreach ($data as $key => $role) {
+        foreach ($data as $role) {
             if( $type::where('name', $role['name'])->count() <= 0 ){
                 $owner = new $type($role);
                 $owner->save();
