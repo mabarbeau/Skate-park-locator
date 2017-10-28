@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
-use App\Role;
-use App\Permission;
 
 class EntrustSeeder extends Seeder
 {
@@ -14,38 +11,42 @@ class EntrustSeeder extends Seeder
      */
     public function run()
     {
-        $owner = new Role();
-        $owner->name         = 'owner';
-        $owner->display_name = 'Project Owner'; // optional
-        $owner->description  = 'User is the owner of a given project'; // optional
-        $owner->save();
+        $roles = [
+            0 => [
+                'name' => 'owner',
+                'display_name' => 'Project Owner',
+                'description' => 'User is the owner of a given project',
+            ],
+            1 => [
+                'name' => 'admin',
+                'display_name' => 'User Administrator',
+                'description' => 'User is allowed to manage and edit other users',
+            ],
+        ];
 
-        $admin = new Role();
-        $admin->name         = 'admin';
-        $admin->display_name = 'User Administrator'; // optional
-        $admin->description  = 'User is allowed to manage and edit other users'; // optional
-        $admin->save();
+        $permissions = [
+            0 => [
+                'name' => 'create-post',
+                'display_name' => 'Create Posts',
+                'description' => 'create new blog posts',
+            ],
+            1 => [
+                'name' => 'edit-user',
+                'display_name' => 'Edit Users',
+                'description' => 'edit existing users',
+            ],
+        ];
 
-        $user = User::inRandomOrder()->first();
-        $user->attachRole($admin);
+        $this->create('App\Role', $roles);
+        $this->create('App\Permission', $permissions);
+    }
 
-        $createPost = new Permission();
-        $createPost->name         = 'create-post';
-        $createPost->display_name = 'Create Posts'; // optional
-        // Allow a user to...
-        $createPost->description  = 'create new blog posts'; // optional
-        $createPost->save();
-
-        $editUser = new Permission();
-        $editUser->name         = 'edit-user';
-        $editUser->display_name = 'Edit Users'; // optional
-        // Allow a user to...
-        $editUser->description  = 'edit existing users'; // optional
-        $editUser->save();
-
-        $admin->attachPermission($createPost);
-        // equivalent to $admin->perms()->sync(array($createPost->id));
-
-        $owner->attachPermissions(array($createPost, $editUser));
+    protected function create($type, $data){
+        foreach ($data as $key => $role) {
+            if( $type::where('name', $role['name'])->count() <= 0 ){
+                $owner = new $type($role);
+                $owner->save();
+            }
+        }
     }
 }
