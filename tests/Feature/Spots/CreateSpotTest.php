@@ -21,7 +21,7 @@ class CreateSpotTest extends TestCase
      */
     public function testCreateNewSpotWithApi(\App\Spot $spot)
     {
-        $response = $this->json('POST', "/api/spots", $spot->toArray());
+        $response = $this->actingAs(\App\User::find(1))->json('POST', "/api/spots", $spot->toArray());
 
         $response->assertStatus(200);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Spot;
 use App\Backup;
@@ -15,7 +16,8 @@ class SpotsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('cors');
+      $this->middleware('cors');
+      $this->middleware('auth', ['except' =>['index','show']]);
     }
 
 
@@ -48,13 +50,9 @@ class SpotsController extends Controller
     protected function store(StoreSpot $request)
     {
         $save = $request->all();
-
-        // Hardcoded defaults
         $save['rating'] = null;
-
-        //TODO: Get creator id
-        $save['creator_id'] = 1;
-        $save['updater_id'] = 10;
+        $save['creator_id'] = Auth::id();
+        $save['updater_id'] = Auth::id();
 
         return Spot::create($save);
     }
@@ -92,7 +90,7 @@ class SpotsController extends Controller
     {
       $spot = Spot::where('slug', $slug)->firstOrFail();
 
-      $spot['updater_id'] = 10;
+      $spot['updater_id'] = Auth::id();
 
       $spot->fill( $request->all() )->save();
 
