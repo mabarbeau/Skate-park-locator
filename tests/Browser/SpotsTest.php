@@ -20,7 +20,7 @@ class SpotsTest extends DuskTestCase
     public function testIndex()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(\App\User::find(1))->visit(new Index);
+            $browser->loginAs(\App\User::role('admin')->firstOrFail())->visit(new Index);
         });
     }
 
@@ -32,7 +32,7 @@ class SpotsTest extends DuskTestCase
     public function testCreate()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(\App\User::find(1))->visit(new Create);
+            $browser->loginAs(\App\User::role('admin')->firstOrFail())->visit(new Create);
         });
     }
 
@@ -56,7 +56,7 @@ class SpotsTest extends DuskTestCase
     public function testEdit()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(\App\User::find(1))->visit(new Edit);
+            $browser->loginAs(\App\User::role('admin')->firstOrFail())->visit(new Edit);
         });
     }
 }

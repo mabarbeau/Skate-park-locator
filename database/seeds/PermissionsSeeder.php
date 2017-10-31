@@ -5,41 +5,17 @@ use Illuminate\Database\Seeder;
 class PermissionsSeeder extends Seeder
 {
     protected $roles = [
-        [
-            'name' => 'user',
-            'guard_name' => 'Basic User'
-        ],
-        [
-            'name' => 'owner',
-            'guard_name' => 'Project Owner'
-        ],
-        [
-            'name' => 'admin',
-            'guard_name' => 'User Administrator'
-        ],
+        [ 'name' => 'user'  ],
+        [ 'name' => 'owner' ],
+        [ 'name' => 'admin' ]
     ];
 
     protected $permissions = [
-        [
-            'name' => 'create',
-            'guard_name' => 'Create'
-        ],
-        [
-            'name' => 'read',
-            'guard_name' => 'Read'
-        ],
-        [
-            'name' => 'update',
-            'guard_name' => 'Update'
-        ],
-        [
-            'name' => 'delete',
-            'guard_name' => 'Delete'
-        ],
-        [
-            'name' => 'restore',
-            'guard_name' => 'Restore'
-        ],
+        [ 'name' => 'create'  ],
+        [ 'name' => 'read'    ],
+        [ 'name' => 'update'  ],
+        [ 'name' => 'delete'  ],
+        [ 'name' => 'restore' ]
     ];
 
     protected $role_permissions = [

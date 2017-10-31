@@ -21,7 +21,7 @@ class testShowSpot extends TestCase
   public function testShowSpotApiResponce(Spot $spot)
   {
       $this
-        ->actingAs(\App\User::find(1))
+        ->actingAs(\App\User::role('admin')->firstOrFail())
         ->get("api/spots/$spot->slug")
         ->assertJsonFragment([
           "slug" => $spot->slug,
