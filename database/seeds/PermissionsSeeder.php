@@ -2,46 +2,43 @@
 
 use Illuminate\Database\Seeder;
 
-class EntrustSeeder extends Seeder
+class PermissionsSeeder extends Seeder
 {
     protected $roles = [
         [
             'name' => 'user',
-            'display_name' => 'Basic User',
-            'description' => 'User account has been verifed',
+            'guard_name' => 'Basic User'
         ],
         [
             'name' => 'owner',
-            'display_name' => 'Project Owner',
-            'description' => 'User is the owner of a given project',
+            'guard_name' => 'Project Owner'
         ],
         [
             'name' => 'admin',
-            'display_name' => 'User Administrator',
-            'description' => 'User is allowed to manage and edit other users',
+            'guard_name' => 'User Administrator'
         ],
     ];
 
     protected $permissions = [
         [
             'name' => 'create',
-            'display_name' => 'Create',
+            'guard_name' => 'Create'
         ],
         [
             'name' => 'read',
-            'display_name' => 'Read',
+            'guard_name' => 'Read'
         ],
         [
             'name' => 'update',
-            'display_name' => 'Update',
+            'guard_name' => 'Update'
         ],
         [
             'name' => 'delete',
-            'display_name' => 'Delete',
+            'guard_name' => 'Delete'
         ],
         [
             'name' => 'restore',
-            'display_name' => 'Restore',
+            'guard_name' => 'Restore'
         ],
     ];
 
@@ -82,11 +79,11 @@ class EntrustSeeder extends Seeder
             $permission_name = $arr[1];
 
             $role = App\Role::where('name', $role_name)->firstOrFail();
-            $count = $role->perms()->where('name', $permission_name)->count();
+            $count = $role->permissions()->where('name', $permission_name)->count();
             if( $count == 0 ){
                 $role = App\Role::where('name', $role_name)->firstOrFail();
                 $permission = App\Permission::where('name', $permission_name)->firstOrFail();
-                $role->perms()->attach([$permission->id]) ;
+                $role->permissions()->attach([$permission->id]) ;
                 echo "Created pivot: $item \n";
             }else{
                 echo "Found pivot: $item \n";

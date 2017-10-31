@@ -2,12 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Permission as Model;
 
 class Permission extends Model
 {
-  public function roles()
-  {
-    return $this->belongsToMany('App\Role');
-  }
+
 }
