@@ -23,8 +23,9 @@ class DeleteTagTest extends TestCase
   {
 
     $spot = \App\Spot::select('slug')->where('id', $tag->spot_id)->firstOrFail();
+    $user = \App\User::permission('delete')->firstOrFail();
 
-    $response = $this->delete("/spots/$spot->slug/tags/$tag->index");
+    $response = $this->actingAs($user)->delete("/spots/$spot->slug/tags/$tag->index");
 
     $response->assertStatus(302);
   }

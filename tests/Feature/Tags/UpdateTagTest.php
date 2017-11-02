@@ -22,10 +22,12 @@ class UpdateTagTest extends TestCase
   public function testCreateNewTag(\App\Tag $newtag)
   {
     $tag = \App\Tag::select('spot_id', 'index')->inRandomOrder()->firstOrFail();
-
     $spot = \App\Spot::select('slug')->where('id', $tag->spot_id)->firstOrFail();
+    $user = \App\User::permission('update')->firstOrFail();
 
-    $response = $this->patch("/spots/$spot->slug/tags/$tag->index", $newtag->toArray());
+    $response = $this
+                    ->actingAs($user)
+                    ->patch("/spots/$spot->slug/tags/$tag->index", $newtag->toArray());
 
     $response->assertStatus(302);
 

@@ -20,8 +20,11 @@ class CreateTagTest extends TestCase
     public function testCreateNewTag(\App\Tag $tag)
     {
         $spot = \App\Spot::select('slug')->inRandomOrder()->firstOrFail();
+        $user =  \App\User::inRandomOrder()->firstOrFail();
 
-        $response = $this->json('POST', "/spots/$spot->slug/tags", $tag->toArray());
+        $response = $this
+                        ->actingAs($user)
+                        ->json('POST', "/spots/$spot->slug/tags", $tag->toArray());
 
         $response->assertStatus(302);
 
