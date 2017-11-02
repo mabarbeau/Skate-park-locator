@@ -8,16 +8,8 @@ use App\Spot;
 use App\Tag;
 use App\Http\Requests\StoreTag;
 
-class TagsController extends Controller
+class TagsController extends ResourceController
 {
-    /**
-     * Instantiate a new TagsController instance with Cross-origin resource sharing (CORS) middleware
-     */
-    public function __construct()
-    {
-        $this->middleware('cors');
-    }
-
     /**
      * Return a collection list of tags for spot with provided slug
      *

@@ -9,19 +9,8 @@ use App\Spot;
 use App\Backup;
 use App\Http\Requests\StoreSpot;
 
-class SpotsController extends Controller
+class SpotsController extends ResourceController
 {
-    /**
-     * Instantiate a new SpotsController instance with Cross-origin resource sharing (CORS) middleware
-     */
-    public function __construct()
-    {
-      $this->middleware('cors');
-      $this->middleware('auth')->except(['index','show']);
-      $this->middleware(['role:admin'])->except(['index','show']);
-    }
-
-
     /**
      * Return a paginated list of spots
      *
