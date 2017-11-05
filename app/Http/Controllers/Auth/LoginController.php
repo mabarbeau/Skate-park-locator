@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\LoginToken;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -27,13 +28,17 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+      $this->middleware('guest', ['except' => 'logout','byToken']);
+    }
+
+    protected function byToken(LoginToken $token)
+    {
+      $this->guard()->login($token->user);
+
+      $token->delete();
+
+      return redirect()->intended($this->redirectTo);
     }
 }

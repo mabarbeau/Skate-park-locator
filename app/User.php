@@ -29,5 +29,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function token()
+    {
+      return $this->hasOne('App\LoginToken');
+
+    }
 
 }
