@@ -5,7 +5,9 @@
 @section('content')
 
   <a href="/api/spots" class="btn btn-primary"> Api </a>
-  <a href="{{route('spots.create')}}" class="btn btn-primary"> Create new </a>
+  @can('create')
+    <a href="{{route('spots.create')}}" class="btn btn-primary"> Create new </a>
+  @endcan
   <ul>
     @foreach ($spots as $spot)
         <li>

@@ -6,11 +6,14 @@
 
 @section('content')
   <a href="/api/spots/{{$spot->slug}}" class="btn btn-primary"> Api </a>
-
-  <a href="{{route('spots.edit', ['slug'=> $spot->slug])}}" class="btn btn-default">Edit</a>
-  {{ Form::open(['route' => ['spots.destroy', $spot->slug], 'method' => 'delete']) }}
-    <button class="btn btn-dangers" type="submit">Delete</button>
-  {{ Form::close() }}
+  @can('update')
+    <a href="{{route('spots.edit', ['slug'=> $spot->slug])}}" class="btn btn-default">Edit</a>
+  @endcan
+  @can('delete')
+    {{ Form::open(['route' => ['spots.destroy', $spot->slug], 'method' => 'delete']) }}
+      <button class="btn btn-dangers" type="submit">Delete</button>
+    {{ Form::close() }}
+  @endcan
 
   <ul>
      <li>
@@ -58,9 +61,11 @@
   </ul>
 
   <h2>Tags</h2>
-  <a href="{{route('tags.create', $spot->slug)}}" class="btn btn-default">
-    Create
-  </a>
+  @can('update')
+    <a href="{{route('tags.create', $spot->slug)}}" class="btn btn-default">
+      Create
+    </a>
+  @endcan
   <ol>
     @foreach($spot->tags as $tag)
 

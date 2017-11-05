@@ -6,11 +6,14 @@
 
 @section('content')
   <a href="/api/spots/{{$slug}}/tags/{{$tag->index}}" class="btn btn-primary"> Api </a>
-
-  <a href="{{route('tags.update', ['slug'=> $slug, 'tag' => $tag->index])}}/edit" class="btn btn-default">Edit</a>
-  {{ Form::open(['url' => route('tags.destroy', ['slug' => $slug, 'index' => $tag->index ] ), 'method' => 'delete']) }}
-    <button class="btn btn-dangers" type="submit">Delete</button>
-  {{ Form::close() }}
+  @can('update')
+    <a href="{{route('tags.update', ['slug'=> $slug, 'tag' => $tag->index])}}/edit" class="btn btn-default">Edit</a>
+  @endcan
+  @can('delete')
+    {{ Form::open(['url' => route('tags.destroy', ['slug' => $slug, 'index' => $tag->index ] ), 'method' => 'delete']) }}
+      <button class="btn btn-dangers" type="submit">Delete</button>
+    {{ Form::close() }}
+  @endcan
 
   <h2>Tags</h2>
   <ol>
