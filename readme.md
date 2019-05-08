@@ -1,3 +1,3 @@
-#Skatepark locator
+# Locator App
 
-###Built using Laravel PHP Framework
+## Built using Laravel PHP Framework
