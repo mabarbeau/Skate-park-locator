@@ -19,11 +19,11 @@ class CreateSpotTest extends TestCase
      *
      * @return void
      */
-    public function testCreateNewSpotWithApi(\App\Spot $spot)
+    public function testCreate(\App\Spot $spot)
     {
         $user =  \App\User::inRandomOrder()->firstOrFail();
 
-        $response = $this->actingAs($user)->json('POST', "/api/spots", $spot->toArray());
+        $response = $this->actingAs($user)->json('POST', "/spots", $spot->toArray());
 
         $response->assertStatus(200);
     }
